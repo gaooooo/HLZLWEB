@@ -842,6 +842,7 @@
     </div>
 </template>
 <script>
+import { testFetch } from 'src/api/report'
   export default {
     data() {
       return {
@@ -874,14 +875,20 @@
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
+        testFetch().then(response => {
+          console.log(response.data)
         });
+        // this.$refs[formName].validate((valid) => {
+        //   if (valid) {
+        //     alert('submit!');
+        //     testFetch().then(response => {
+        //       console.log(response.data)
+        //     })
+        //   } else {
+        //     console.log('error submit!!');
+        //     return false;
+        //   }
+        // });
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

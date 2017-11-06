@@ -1,0 +1,16 @@
+extends layout-angular
+
+block content
+    div(ng-controller="activityController as vm" class="activity")
+        div(class="activity-container activity-container-left")
+            md-content 
+                section(layout="row" layout-sm="column" layout-align="center center" layout-wrap)
+                    md-button(class="md-raised md-primary" ng-click="clickMe($event)") 测试 
+        div(class="activity-container activity-container-right")
+            p {{ loading ? 'loading...' : url ? '地址:'+url : '' }}
+            pre {{ resData | json }}
+block afterScripts
+    script(src="@/pages/activity/index.js")
+block afterStyles
+    link(rel="stylesheet" type="text/css" href="@/pages/activity/index.css")
+
