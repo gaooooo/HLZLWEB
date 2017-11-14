@@ -166,11 +166,11 @@ import { add, getPage, del, update } from 'src/api/hospital'
                   return
                 }
               });
+              this.getData()
               this.$message({
                 message: '删除成功！',
                 type: 'success'
               });
-              this.getData()
             },
             handleAdd () {
               this.option = 0;

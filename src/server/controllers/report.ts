@@ -39,7 +39,7 @@ export default ({ debug, logger }) => {
         async getPage(params, query) {
             let newQuery = {}
             if (query && query['name']) {
-              newQuery = {name: {$regex: query['name'], $options:'i'}}
+              newQuery = {hospital_name: {$regex: query['name'], $options:'i'}}
             }
             if (!this.session.currentUser || !this.session.currentUser['account'] || !this.session.currentUser['role']) {
                 return JSONResponse(2, null, '登录超时！')
