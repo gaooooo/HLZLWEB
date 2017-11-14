@@ -38,6 +38,7 @@
                     localStorage.removeItem('ms_name')
                     localStorage.removeItem('ms_account')
                     localStorage.removeItem('ms_permission')
+                    localStorage.removeItem('ms_id')
                     this.$router.push('/login');
                 } else if (command == 'updatepassword') {
                     this.$router.push('/updatepassword');

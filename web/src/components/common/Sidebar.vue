@@ -102,7 +102,6 @@
             },
             userpermission(){
                 let ms_permission = localStorage.getItem('ms_permission');
-                console.log(1111111111, ms_permission)
                 return ms_permission;
             }
         }

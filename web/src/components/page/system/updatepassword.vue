@@ -11,7 +11,7 @@
             <el-form :model="ruleForm" ref="ruleForm" label-width="200px" class="demo-ruleForm">
                 <el-form-item
                     label="用户名">
-                <el-input type="account" v-model.number="ruleForm.account" auto-complete="off" :disabled="true"></el-input>
+                <span>{{account }}</span>
                 </el-form-item>
                  <el-form-item
                     label="新密码"
@@ -19,7 +19,7 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'}
                     ]">
-                <el-input type="password" v-model.number="ruleForm.password" auto-complete="off"></el-input>
+                <el-input type="password" v-model="ruleForm.password" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="重复新密码"
@@ -27,12 +27,12 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'}
                     ]">
-                <el-input type="passwordagain" v-model.number="ruleForm.passwordagain" auto-complete="off"></el-input>
+                <el-input type="password" v-model="ruleForm.passwordagain" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="">
-                 <el-button type="primary">保存</el-button>
-                 <el-button type="info">重置</el-button>
+                 <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
+                 <el-button type="info" @click="resetForm('ruleForm')">重置</el-button>
                 </el-form-item>
             </el-form>
            
@@ -40,18 +40,14 @@
     </div>
 </template>
 <script>
+import  * as accountModel from 'src/api/account'
+import  * as hospitalModel from 'src/api/hospital'
   export default {
     data() {
       return {
         ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          password: '',
+          passwordagain: ''
         }
         // rules: {
         //   name: [
@@ -70,13 +66,64 @@
         // }
       };
     },
+    computed:{
+        _id(){
+            let ms_id = localStorage.getItem('ms_id');
+            return ms_id;
+        },
+        account(){
+            let ms_account = localStorage.getItem('ms_account');
+            return ms_account;
+        },
+        role() {
+           let ms_role = localStorage.getItem('ms_permission');
+           return ms_role;
+        }
+    },
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            if (this.ruleForm.password !== this.ruleForm.passwordagain) {
+              this.$message('两次输入密码不一致！');
+              return false;
+            }
+            console.log(this.role)
+            console.log(accountModel)
+            // 这里是异步请求
+            this.role == '1' && accountModel.update(this._id, this.ruleForm).then(response => {
+              if (!response.data.status) {
+                this.$message({
+                    showClose: true,
+                    message: response.data.message,
+                    type: 'error'
+                });
+                return
+              }
+              this.$message({
+                message: '管理员密码修改成功，请重新登录！',
+                type: 'success'
+              });
+              this.$router.push('/login');
+            });
+
+            this.role == '2' && hospitalModel.update(this._id, this.ruleForm).then(response => {
+              if (!response.data.status) {
+                this.$message({
+                    showClose: true,
+                    message: response.data.message,
+                    type: 'error'
+                });
+                return
+              }
+              this.$message({
+                message: '医院密码修改成功，请重新登录！',
+                type: 'success'
+              });
+              this.$router.push('/login');
+            });
           } else {
-            console.log('error submit!!');
+            this.$message('请检查数据格式！');
             return false;
           }
         });

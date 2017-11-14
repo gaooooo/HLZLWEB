@@ -9,10 +9,10 @@
         </div>
         <div class="handle-box">
            <el-button type="primary" icon="plus" class="handle-del mr10" @click="handleAdd">数据上报</el-button>
-            <el-button type="primary" icon="delete" class="handle-del mr10" @click="handleDelAll">批量删除</el-button>
-            <el-input v-model="select_word" placeholder="请输入医院名称搜索" class="handle-input mr10"></el-input>
-            <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
-            <el-button style="float:right" type="primary" @click="handleExport">导出统计表</el-button>
+            <el-button type="primary" icon="delete" class="handle-del mr10" v-if="userpermission == '1'" @click="handleDelAll">批量删除</el-button>
+            <el-input v-model="select_word" placeholder="请输入医院名称搜索" class="handle-input mr10" v-if="userpermission == '1'"></el-input>
+            <el-button type="primary" icon="search" @click="handleSearch" v-if="userpermission == '1'">搜索</el-button>
+            <el-button style="float:right" type="primary" @click="handleExport" v-if="userpermission == '1'">导出统计表</el-button>
         </div>
         <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
@@ -32,7 +32,7 @@
                 <template scope="scope">
                     <el-button size="small"
                             @click="handleView(scope.$index, scope.row)">查看</el-button>
-                    <el-button size="small" type="danger"
+                    <el-button size="small" type="danger" v-if="userpermission == '1'"
                             @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
             </el-table-column>
@@ -63,7 +63,6 @@ import { getPage, del, download } from 'src/api/report'
         data() {
             return {
                 viewDialogVisible: false,
-                url: './static/vuetable.json',
                 tableData: [],
                 pageIndex: 1,
                 pageSize: 10,
@@ -73,13 +72,17 @@ import { getPage, del, download } from 'src/api/report'
                 row: null
             }
         },
+        computed:{
+            userpermission(){
+                let ms_permission = localStorage.getItem('ms_permission');
+                return ms_permission;
+            }
+        },
         components: {
           ViewModal 
         },
         created(){
             this.getData();
-        },
-        computed: {
         },
         methods: {
             onCancel() {
