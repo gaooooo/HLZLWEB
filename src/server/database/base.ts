@@ -76,48 +76,53 @@ export default {
     //  * @param {*查询数据回调} callback 
     //  * @param {*查询数据条数回调} countcallback 
     //  */
-    // _getPage(param, callback, countcallback) {
-    //     param = this._paramPreprocess(param)
-    //     param.pageIndex = parseInt(param.pageIndex || 1) //默认页是第1 页
-    //     param.pageIndex = param.pageIndex < 1 ? 1 : param.pageIndex //最小页码是1
-    //     param.pageSize = parseInt(param.pageSize || 10)
-    //     param.pageSize = param.pageSize < 1 ? 1 : param.pageSize //最小大小是1
-    //     let pagePromise = this
-    //         .find(param.condition)
-    //         .sort(param.sortBy || { createTime: -1 })
-    //         .skip((param.pageIndex - 1) * param.pageSize)
-    //         .limit(param.pageSize)
-    //         .find()
-    //     let countPromise = this
-    //         .find(param.condition)
-    //         .count()
-    //     if (callback) {
-    //         pagePromise = callback(pagePromise) || pagePromise
-    //     }
-    //     if (countcallback) {
-    //         countPromise = countcallback(countPromise) || countPromise
-    //     }
-    //     countPromise = countPromise.exec()
-    //     pagePromise = pagePromise.exec()
-    //     return Promise.all([countPromise, pagePromise]).then(([count, page]) => { //两函数返回的两个值
-    //         return { total: count, list: page, pageIndex: param.pageIndex, pageSize: param.pageSize }
-    //     })
+    _getPage(param, callback, countcallback) {
+        // param = this._paramPreprocess(param)
+        param.pageIndex = parseInt(param.pageIndex || 1) //默认页是第1 页
+        param.pageIndex = param.pageIndex < 1 ? 1 : param.pageIndex //最小页码是1
+        param.pageSize = parseInt(param.pageSize || 10)
+        param.pageSize = param.pageSize < 1 ? 1 : param.pageSize //最小大小是1
+        let pagePromise = this
+            .find(param.condition)
+            //.find({name: {$regex: '3', $options:'i'}})
+            .sort(param.sortBy || { createTime: -1 })
+            .skip((param.pageIndex - 1) * param.pageSize)
+            .limit(param.pageSize)
+            .find()
+        let countPromise = this
+            .find(param.condition)
+            .count()
+        if (callback) {
+            pagePromise = callback(pagePromise) || pagePromise
+        }
+        if (countcallback) {
+            countPromise = countcallback(countPromise) || countPromise
+        }
+        countPromise = countPromise.exec()
+        pagePromise = pagePromise.exec()
+        return Promise.all([countPromise, pagePromise]).then(([count, page]) => { //两函数返回的两个值
+            return { total: count, list: page, pageIndex: param.pageIndex, pageSize: param.pageSize }
+        })
+    },
+    // _find: function (param) {
+    //     return this.find(param.condition).sort(param.sortBy || { createTime: -1 }).exec();
     // },
     // _find(param) {
     //     param = this._paramPreprocess(param)
     //     return this.find(param.condition).sort(param.sortBy || { createTime: -1 }).exec()
     // },
     // _findOne(param) {
-    //     param = this._paramPreprocess(param)
+    //     // param = this._paramPreprocess(param)
     //     return this.findOne(param.condition).exec()
     // },
     // _findById(id) {
     //     return this.findById(id).exec()
     // },
-    // _delete(param) {
-    //     param = this._paramPreprocess(param)
-    //     return this.remove(param.condition).exec()
-    // },
+    _delete(param) {
+        // param = this._paramPreprocess(param)
+        // console.log(param.condition)
+        return this.remove(param.condition).exec()
+    }
     // _add(data) {
     //     let model = new this(data)
     //     return model.save()

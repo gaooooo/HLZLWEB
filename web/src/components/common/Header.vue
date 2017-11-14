@@ -5,7 +5,7 @@
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
                     <img class="user-logo" src="../../../static/img/img.jpg">
-                    {{username}}
+                    {{ username + '-' + account}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="updatepassword">修改密码</el-dropdown-item>
@@ -24,14 +24,20 @@
         },
         computed:{
             username(){
-                let username = localStorage.getItem('ms_username');
-                return username ? username : this.name;
+                let ms_name = localStorage.getItem('ms_name');
+                return ms_name;
+            },
+            account(){
+                let ms_account = localStorage.getItem('ms_account');
+                return ms_account;
             }
         },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
+                    localStorage.removeItem('ms_name')
+                    localStorage.removeItem('ms_account')
+                    localStorage.removeItem('ms_permission')
                     this.$router.push('/login');
                 } else if (command == 'updatepassword') {
                     this.$router.push('/updatepassword');

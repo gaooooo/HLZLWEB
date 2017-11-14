@@ -1,7 +1,21 @@
 <template>
     <div class="sidebar">
         <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
-            <template v-for="item in items">
+            <template v-if="userpermission == '1'" v-for="item in items">
+                <template v-if="item.subs">
+                    <el-submenu :index="item.index">
+                        <template slot="title"><i :class="item.icon"></i>{{ item.title }}</template>
+                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">{{ subItem.title }}
+                        </el-menu-item>
+                    </el-submenu>
+                </template>
+                <template v-else>
+                    <el-menu-item :index="item.index">
+                        <i :class="item.icon"></i>{{ item.title }}
+                    </el-menu-item>
+                </template>
+            </template>
+            <template v-if="userpermission == '2'" v-for="item in itemshospital">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index">
                         <template slot="title"><i :class="item.icon"></i>{{ item.title }}</template>
@@ -23,29 +37,11 @@
     export default {
         data() {
             return {
+                role: 2,
                 items: [
                     {
-                        icon: 'el-icon-menu',
-                        index: '2',
-                        title: '表格',
-                        subs: [
-                            {
-                                index: 'basetable',
-                                title: '基础表格'
-                            },
-                            {
-                                index: 'vuetable',
-                                title: 'Vue表格组件'
-                            },
-                            {
-                                index: 'baseform',
-                                title: '基本表单'
-                            }
-                        ]
-                    },
-                    {
                         icon: 'el-icon-date',
-                        index: '3',
+                        index: '1',
                         title: '数据管理',
                         subs: [
                             {
@@ -60,23 +56,40 @@
                     },
                     {
                         icon: 'el-icon-star-on',
-                        index: '4',
+                        index: '2',
                         title: '医院管理',
                         subs: [
                             {
-                                index: 'hospitalinfo',
+                                index: 'hospital',
                                 title: '医院信息管理'
                             }
                         ]
                     },
                     {
                         icon: 'el-icon-setting',
-                        index: '5',
+                        index: '3',
                         title: '系统管理',
                         subs: [
                             {
-                                index: 'systemaccount',
-                                title: '帐号管理'
+                                index: 'account',
+                                title: '账号管理'
+                            }
+                        ]
+                    }
+                ],
+                itemshospital: [
+                    {
+                        icon: 'el-icon-date',
+                        index: '1',
+                        title: '数据管理',
+                        subs: [
+                            {
+                                index: 'report',
+                                title: '数据上报'
+                            },
+                            {
+                                index: 'reportlist',
+                                title: '查看上报'
                             }
                         ]
                     }
@@ -86,6 +99,11 @@
         computed:{
             onRoutes(){
                 return this.$route.path.replace('/','');
+            },
+            userpermission(){
+                let ms_permission = localStorage.getItem('ms_permission');
+                console.log(1111111111, ms_permission)
+                return ms_permission;
             }
         }
     }

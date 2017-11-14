@@ -3,35 +3,28 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-menu"></i> 数据管理</el-breadcrumb-item>
-                <el-breadcrumb-item>查看上报记录</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-menu"></i> 系统管理</el-breadcrumb-item>
+                <el-breadcrumb-item>账号管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="handle-box">
-           <el-button type="primary" icon="plus" class="handle-del mr10" @click="handleAdd">数据上报</el-button>
+           <el-button type="primary" icon="plus" class="handle-del mr10" @click="handleAdd">添加</el-button>
             <el-button type="primary" icon="delete" class="handle-del mr10" @click="handleDelAll">批量删除</el-button>
             <el-input v-model="select_word" placeholder="请输入医院名称搜索" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
-            <el-button style="float:right" type="primary" @click="handleExport">导出统计表</el-button>
         </div>
         <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="hospital_name" label="医院名称" sortable width="150">
+            <el-table-column prop="name" label="管理员姓名" sortable width="150">
             </el-table-column>
-            <el-table-column prop="qykfcws" label="全院开放床位数" width="120">
+            <el-table-column prop="account" label="登录名" width="120">
             </el-table-column>
-            <el-table-column prop="qyzzjhbfcws" label="全院重症监护病房床位数">
-            </el-table-column>
-            <el-table-column prop="qyzchszs" label="全院注册护士总数">
-            </el-table-column>
-            <el-table-column prop="wzchszs" label="未注册护士总数">
-            </el-table-column>
-            <el-table-column prop="updateTimeString" label="最近一次更新时间">
+            <el-table-column prop="updateTimeString" label="最后一次更新时间">
             </el-table-column>
             <el-table-column label="操作" width="180">
                 <template scope="scope">
                     <el-button size="small"
-                            @click="handleView(scope.$index, scope.row)">查看</el-button>
+                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="small" type="danger"
                             @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
@@ -46,23 +39,23 @@
         </div>
     </div>
     <el-dialog
-        :title="查看"
-        :visible.sync="viewDialogVisible"
+        :title="!option ? '新增' : '修改'"
+        :visible.sync="editDialogVisible"
         width="30%"
-        v-if="viewDialogVisible"
+        v-if="editDialogVisible"
         >
-        <view-modal :row="row" @on-ok="onOK" @on-cancel="onCancel" v-if="viewDialogVisible"></view-modal>
+        <edit-modal :row="row" @on-ok="onOK" @on-cancel="onCancel" v-if="editDialogVisible"></edit-modal>
     </el-dialog>
 </div>
 </template>
 
 <script>
-import ViewModal from './view.vue'
-import { getPage, del, download } from 'src/api/report'
+import EditModal from './account_edit.vue'
+import { add, getPage, del, update } from 'src/api/account'
     export default {
         data() {
             return {
-                viewDialogVisible: false,
+                editDialogVisible: false,
                 url: './static/vuetable.json',
                 tableData: [],
                 pageIndex: 1,
@@ -70,11 +63,12 @@ import { getPage, del, download } from 'src/api/report'
                 pageTotal: 0,
                 multipleSelection: [],
                 select_word: '',
-                row: null
+                row: null,
+                option: 0
             }
         },
         components: {
-          ViewModal 
+          EditModal 
         },
         created(){
             this.getData();
@@ -83,13 +77,28 @@ import { getPage, del, download } from 'src/api/report'
         },
         methods: {
             onCancel() {
-              this.viewDialogVisible = false;
+              this.editDialogVisible = false;
             },
             onOK(model) {
-              this.viewDialogVisible = false;
-            },
-            handleExport () {
-              download(`/report/page/1000/${this.pageIndex}?is_export=1`)
+              !this.option && add(model).then(response => {
+                if (!response.data.status) {
+                this.$message(response.data.message);
+                return
+                }
+              });
+              this.option && update(model._id, model).then(response => {
+                if (!response.data.status) {
+                  this.$message(response.data.message);
+                  return
+                }
+              });
+              this.getData()
+              this.$message({
+                message: !this.option ? '添加记录成功！' : '修改记录成功！',
+                type: 'success'
+              });
+              this.editDialogVisible = false;
+              
             },
             handleCurrentChange(val){
                 this.pageIndex = val;
@@ -123,9 +132,10 @@ import { getPage, del, download } from 'src/api/report'
             filterTag(value, row) {
                 return row.tag === value;
             },
-            handleView(index, row) {
+            handleEdit(index, row) {
+                this.option = 1;
                 this.row = row;
-                this.viewDialogVisible = true;
+                this.editDialogVisible = true;
             },
             async handleDelete(ids, row) {
               let delconfirm = false;
@@ -163,7 +173,9 @@ import { getPage, del, download } from 'src/api/report'
               this.getData()
             },
             handleAdd () {
-              this.$router.push('/report')
+              this.option = 0;
+              this.row = null;
+              this.editDialogVisible = true;
             },
             handleSubmit() {
               console.log(this.$refs)

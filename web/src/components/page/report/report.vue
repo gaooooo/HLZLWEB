@@ -8,7 +8,7 @@
             </el-breadcrumb>
         </div>
         <div class="form-box">
-            <el-form :model="ruleForm" ref="ruleForm" label-width="200px" class="demo-ruleForm">
+            <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="280px" class="demo-modelInfo">
                 <el-form-item
                     label="1.全院开放床位数（张）"
                     prop="qykfcws"
@@ -16,7 +16,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qykfcws" v-model.number="ruleForm.qykfcws" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qykfcws" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="2.全院重症监护病房床位数（张）"
@@ -25,7 +25,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyzzjhbfcws" v-model.number="ruleForm.qyzzjhbfcws" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyzzjhbfcws" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="3.全院注册护士总数（人）"
@@ -34,7 +34,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyzchszs" v-model.number="ruleForm.qyzchszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyzchszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="4.未注册护士总数（人）"
@@ -43,7 +43,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="wzchszs" v-model.number="ruleForm.wzchszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.wzchszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="5.从事护理工作护士总数（人）"
@@ -52,16 +52,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="cshlgzhszs" v-model.number="ruleForm.cshlgzhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.cshlgzhszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="6.从事护理工作的护理人员占全院卫生技术人员的比例（%）"
-                    prop="cshlgzdhlryzqywsjsrydbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="cshlgzdhlryzqywsjsrydbl" v-model.number="ruleForm.cshlgzdhlryzqywsjsrydbl" auto-complete="off"></el-input>
+                    prop="cshlgzdhlryzqywsjsrydbl">
+                    <el-input  v-model="modelInfo.cshlgzdhlryzqywsjsrydbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="7.临床岗位护士总数（人）"
@@ -70,7 +66,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="lcgwhszs" v-model.number="ruleForm.lcgwhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.lcgwhszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="8.全院病区注册护士总数（人）"
@@ -79,34 +75,26 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qybqzchszs" v-model.number="ruleForm.qybqzchszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qybqzchszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="9.病区护士与实际开放床位比例（%） "
-                    prop="bqhsysjkfcwbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="bqhsysjkfcwbl" v-model.number="ruleForm.bqhsysjkfcwbl" auto-complete="off"></el-input>
+                    prop="bqhsysjkfcwbl">
+                <el-input  v-model.number="modelInfo.bqhsysjkfcwbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="10.重症监护病房护士总数（人）"
-                    prop="cshlgzhszs"
+                    prop="zzjhbfhszs"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="cshlgzhszs" v-model.number="ruleForm.cshlgzhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.zzjhbfhszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="11.重症监护病房护士与实际开放床位比例（%）  "
-                    prop="zzjhbfhsysjkfcwbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="zzjhbfhsysjkfcwbl" v-model.number="ruleForm.zzjhbfhsysjkfcwbl" auto-complete="off"></el-input>
+                    prop="zzjhbfhsysjkfcwbl">
+                <el-input  v-model.number="modelInfo.zzjhbfhsysjkfcwbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="12.CCU病房护士总数（人）  "
@@ -115,16 +103,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="ccubfhszs" v-model.number="ruleForm.ccubfhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.ccubfhszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="13.CCU病房护士与实际开放床位比例（%）"
-                    prop="ccubfhsysjkfcwbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="ccubfhsysjkfcwbl" v-model.number="ruleForm.ccubfhsysjkfcwbl" auto-complete="off"></el-input>
+                    prop="ccubfhsysjkfcwbl">
+                <el-input  v-model.number="modelInfo.ccubfhsysjkfcwbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="14.手术室护士总数（人）"
@@ -133,16 +117,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="ssshszs" v-model.number="ruleForm.ssshszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.ssshszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="15.手术室护士与实际开放手术间比例（%）"
-                    prop="ssshsysjkfssjbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="ssshsysjkfssjbl" v-model.number="ruleForm.ssshsysjkfssjbl" auto-complete="off"></el-input>
+                    prop="ssshsysjkfssjbl">
+                <el-input  v-model.number="modelInfo.ssshsysjkfssjbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="16.透析室护士总数（人）"
@@ -151,16 +131,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="txshszs" v-model.number="ruleForm.txshszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.txshszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="17.透析室护士与透析机比例（%） "
-                    prop="txshsytxjbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="txshsytxjbl" v-model.number="ruleForm.txshsytxjbl" auto-complete="off"></el-input>
+                    prop="txshsytxjbl">
+                <el-input  v-model.number="modelInfo.txshsytxjbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="18.全年离职护士总数（人）"
@@ -169,7 +145,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qnlzhszs" v-model.number="ruleForm.qnlzhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qnlzhszs" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="19.全院博士学历护士数（人）"
@@ -178,7 +154,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qybsxlhss" v-model.number="ruleForm.qybsxlhss" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qybsxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="20.硕士学历护士数（人）"
@@ -187,16 +163,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="ssxlhss" v-model.number="ruleForm.ssxlhss" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.ssxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="21.硕士以上学历护士占全院护士比例（%）"
-                    prop="ssysxlhszqyhsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="ssysxlhszqyhsbl" v-model.number="ruleForm.ssysxlhszqyhsbl" auto-complete="off"></el-input>
+                    prop="ssysxlhszqyhsbl">
+                <el-input  v-model.number="modelInfo.ssysxlhszqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="22.全院本科学历护士数（人）"
@@ -205,16 +177,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qybkxlhss" v-model.number="ruleForm.qybkxlhss" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qybkxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="23.本科学历护士占比全院护士比例（%）"
-                    prop="bkxlhszbqyhsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="bkxlhszbqyhsbl" v-model.number="ruleForm.bkxlhszbqyhsbl" auto-complete="off"></el-input>
+                    prop="bkxlhszbqyhsbl">
+                <el-input  v-model.number="modelInfo.bkxlhszbqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="24.全院大专学历护士数（人）"
@@ -223,16 +191,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qydzxlhss" v-model.number="ruleForm.qydzxlhss" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qydzxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="25.大专学历护士占比全院护士比例（%）"
-                    prop="dzxlhszbqqhsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="dzxlhszbqqhsbl" v-model.number="ruleForm.dzxlhszbqqhsbl" auto-complete="off"></el-input>
+                    prop="dzxlhszbqqhsbl">
+                <el-input  v-model.number="modelInfo.dzxlhszbqqhsbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="26.全院中专学历护士数（人）"
@@ -241,25 +205,17 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyzzxlhss" v-model.number="ruleForm.qyzzxlhss" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyzzxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="27.中专学历护士占比全院护士比例（%）"
-                    prop="zzxlhszbqyhsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="zzxlhszbqyhsbl" v-model.number="ruleForm.zzxlhszbqyhsbl" auto-complete="off"></el-input>
+                    prop="zzxlhszbqyhsbl">
+                <el-input  v-model.number="modelInfo.zzxlhszbqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="28.护理管理人员本科以上学历比例(%)"
-                    prop="hlglrybkysxlbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="hlglrybkysxlbl" v-model.number="ruleForm.hlglrybkysxlbl" auto-complete="off"></el-input>
+                    prop="hlglrybkysxlbl">
+                <el-input  v-model.number="modelInfo.hlglrybkysxlbl" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="29.中医院校毕业和中医护理专业毕业护士数（人）"
@@ -268,16 +224,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="zyyxbyhzyhlzybyhss" v-model.number="ruleForm.zyyxbyhzyhlzybyhss" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.zyyxbyhzyhlzybyhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
                     label="30.中医院校毕业和中医护理专业毕业护士占全院护士比例（%）"
-                    prop="zzyxbyhzyhlzybyhszqyhsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="zzyxbyhzyhlzybyhszqyhsbl" v-model.number="ruleForm.zzyxbyhzyhlzybyhszqyhsbl" auto-complete="off"></el-input>
+                    prop="zzyxbyhzyhlzybyhszqyhsbl">
+                <el-input  v-model.number="modelInfo.zzyxbyhzyhlzybyhszqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="31.全院主任护师总数（人）"
@@ -286,7 +238,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyzrhszs" v-model.number="ruleForm.qyzrhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyzrhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="32.副主任护师总数（人）"
@@ -295,16 +247,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="fzrhszs" v-model.number="ruleForm.fzrhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.fzrhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="33.全院高级职称护士比例（%）"
-                    prop="qygzchsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="qygzchsbl" v-model.number="ruleForm.qygzchsbl" auto-complete="off"></el-input>
+                    prop="qygzchsbl">
+                <el-input  v-model.number="modelInfo.qygzchsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="34.全院主管护师总数（人）"
@@ -313,16 +261,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyzghszs" v-model.number="ruleForm.qyzghszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyzghszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="35.全院中级职称护士比例（%）"
-                    prop="qyzjzchsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="qyzjzchsbl" v-model.number="ruleForm.qyzjzchsbl" auto-complete="off"></el-input>
+                    prop="qyzjzchsbl">
+                <el-input  v-model.number="modelInfo.qyzjzchsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="36.全院护师总数（人）"
@@ -331,7 +275,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyhszs" v-model.number="ruleForm.qyhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="37.全院护士总数（人）"
@@ -340,25 +284,17 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyhszs2" v-model.number="ruleForm.qyhszs2" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyhszs2" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="38.全院初级职称护士比例（%）"
-                    prop="qycjzchsbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="qycjzchsbl" v-model.number="ruleForm.qycjzchsbl" auto-complete="off"></el-input>
+                    prop="qycjzchsbl">
+                <el-input  v-model.number="modelInfo.qycjzchsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="39.护理人员系统接受中医药知识和技能岗位培训（3年培训时间≥100学时）的比例（%）"
-                    prop="hlryxtjszyyzshjngwpxdbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="hlryxtjszyyzshjngwpxdbl" v-model.number="ruleForm.hlryxtjszyyzshjngwpxdbl" auto-complete="off"></el-input>
+                    prop="hlryxtjszyyzshjngwpxdbl">
+                <el-input  v-model.number="modelInfo.hlryxtjszyyzshjngwpxdbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="40.外派进修人员总数（人）"
@@ -367,7 +303,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="wpjxwyzs" v-model.number="ruleForm.wpjxwyzs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.wpjxwyzs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="41.全院有专科护士资格认证总人数（人）"
@@ -376,7 +312,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyyzkhszgrzzrs" v-model.number="ruleForm.qyyzkhszgrzzrs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyyzkhszgrzzrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="42.专科护士占全院护士比例（%）"
@@ -385,7 +321,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="zkhszqyhsbl" v-model.number="ruleForm.zkhszqyhsbl" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.zkhszqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="43.重症监护专科护士总数（人）"
@@ -394,7 +330,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="zzjhzkhszs" v-model.number="ruleForm.zzjhzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.zzjhzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="44.血液净化专科护士总数（人）"
@@ -403,7 +339,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="xyjhzkhszs" v-model.number="ruleForm.xyjhzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.xyjhzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="45.肿瘤专科护士总数（人）"
@@ -412,7 +348,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="zlzkhszs" v-model.number="ruleForm.zlzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.zlzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="46.手术室专科护士总数（人）"
@@ -421,7 +357,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="ssszkhszs" v-model.number="ruleForm.ssszkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.ssszkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="47.急诊急救专科护士总数（人）"
@@ -430,7 +366,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="jzjjzkhszs" v-model.number="ruleForm.jzjjzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.jzjjzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="48.骨科专科护士总数（人）"
@@ -439,7 +375,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="gkzkhszs" v-model.number="ruleForm.gkzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.gkzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="49.静疗专科护士总数（人）"
@@ -448,7 +384,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="jlzkhszs" v-model.number="ruleForm.jlzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.jlzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="50.糖尿病专科护士总数（人）"
@@ -457,7 +393,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="tnbzkhszs" v-model.number="ruleForm.tnbzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.tnbzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="51.消毒供应中心专科护士总数（人）"
@@ -466,16 +402,12 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="xdgyzxzkhszs" v-model.number="ruleForm.xdgyzxzkhszs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.xdgyzxzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="52.其他（请在备注栏注明 ）"
-                    prop="qita"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="qita" v-model.number="ruleForm.qita" auto-complete="off"></el-input>
+                    prop="qita">
+                <el-input   :autosize="{minRows: 2, maxRows: 4}" v-model="modelInfo.qita" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item 
                     label="53.护理质量管理架构" 
@@ -483,10 +415,11 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.hlzlgljg">
+                    <el-radio-group v-model="modelInfo.hlzlgljg">
                     <el-radio label="一级"></el-radio>
                     <el-radio label="二级"></el-radio>
                     <el-radio label="三级"></el-radio>
+                    <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item 
@@ -495,7 +428,7 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.sfjlhlzlglwyh">
+                    <el-radio-group v-model="modelInfo.sfjlhlzlglwyh">
                     <el-radio label="是"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
@@ -506,7 +439,7 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.kzhlxxhjs">
+                    <el-radio-group v-model="modelInfo.kzhlxxhjs">
                     <el-radio label="是"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
@@ -517,10 +450,11 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.lchlxxxt">
+                    <el-radio-group v-model="modelInfo.lchlxxxt">
                     <el-radio label="护士工作站"></el-radio>
                     <el-radio label="移动护理"></el-radio>
                     <el-radio label="物品追溯"></el-radio>
+                    <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item 
@@ -529,37 +463,33 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.hlglxt">
+                    <el-radio-group v-model="modelInfo.hlglxt">
                     <el-radio label="是"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
                     label="58.全院病区总数（个）"
-                    prop="hlryxtjszyyzshjngwpxdbl"
+                    prop="qybqzs"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="hlryxtjszyyzshjngwpxdbl" v-model.number="ruleForm.hlryxtjszyyzshjngwpxdbl" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qybqzs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="59.全院实施责任制整体护理服务模式病区数（个）"
-                    prop="hlryxtjszyyzshjngwpxdbl"
+                    prop="qysszrzzthlfwmsbqs"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="hlryxtjszyyzshjngwpxdbl" v-model.number="ruleForm.hlryxtjszyyzshjngwpxdbl" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qysszrzzthlfwmsbqs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="60.责任制整体护理服务病区占全院病区数比例（%）"
-                    prop="hlryxtjszyyzshjngwpxdbl"
-                    :rules="[
-                    { required: true, message: '本字段不能为空'},
-                    { type: 'number', message: '本字段必须为数字值'}
-                    ]">
-                <el-input type="hlryxtjszyyzshjngwpxdbl" v-model.number="ruleForm.hlryxtjszyyzshjngwpxdbl" auto-complete="off"></el-input>
+                    prop="zrzzthlfwbqzqybqsbl">
+                <el-input  v-model.number="modelInfo.zrzzthlfwbqzqybqsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item 
                     label="61.医院为优质护理服务示范医院" 
@@ -567,7 +497,7 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.yywyzhlfwsfyy">
+                    <el-radio-group v-model="modelInfo.yywyzhlfwsfyy">
                     <el-radio label="国家级"></el-radio>
                     <el-radio label="市级"></el-radio>
                     <el-radio label="否"></el-radio>
@@ -579,21 +509,27 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.kswyzhlfwsfbq">
-                    <el-radio label="是"></el-radio>
+                    <el-radio-group v-model="modelInfo.kswyzhlfwsfbq">
+                    <el-radio label="国家级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
+                    <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item 
                     label="63.科室为优质护理服务示范病区 （个）" 
-                    prop="kswyzhlfwsfbq"
+                    prop="kswyzhlfwsfbq2"
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.kswyzhlfwsfbq">
+                    <el-radio-group v-model="modelInfo.kswyzhlfwsfbq2">
                     <el-radio label="市级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
+                    <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq2_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item 
                     label="64.是否为各类别护理专科培训基地（基地名称请在备注栏注明）" 
@@ -601,21 +537,27 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.sfwglbhlzkpxjd">
+                    <el-radio-group v-model="modelInfo.sfwglbhlzkpxjd">
                     <el-radio label="国家级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
+                    <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item 
                     label="65.是否为各类别护理专科培训基地（基地名称请在备注栏注明）" 
-                    prop="sfwglbhlzkpxjd"
+                    prop="sfwglbhlzkpxjd2"
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="ruleForm.sfwglbhlzkpxjd">
+                    <el-radio-group v-model="modelInfo.sfwglbhlzkpxjd2">
                     <el-radio label="地市级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
+                    <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd2_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item
                     label="66.全院落实国家中医药管理局重点专科护理方案病种数（个）"
@@ -624,7 +566,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qylsgjzyygljzdzkhlfabzs" v-model.number="ruleForm.qylsgjzyygljzdzkhlfabzs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qylsgjzyygljzdzkhlfabzs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="67.医院制定中医护理方案数量（个）"
@@ -633,7 +575,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="yyzdzyhlfasl" v-model.number="ruleForm.yyzdzyhlfasl" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.yyzdzyhlfasl" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="68.全院中医护理技术开展项目数（项）"
@@ -642,7 +584,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyzyhljskzxms" v-model.number="ruleForm.qyzyhljskzxms" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyzyhljskzxms" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="69.全年中医护理技术开展总例数（例）"
@@ -651,7 +593,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qnzyhljskzzlt" v-model.number="ruleForm.qnzyhljskzzlt" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qnzyhljskzzlt" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="70.全院护理临床带教老师人数（人）"
@@ -660,7 +602,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qyhllcdjlsrs" v-model.number="ruleForm.qyhllcdjlsrs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qyhllcdjlsrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="71.全院每年接收实习生人数（人）"
@@ -669,7 +611,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qymnjssxsrs" v-model.number="ruleForm.qymnjssxsrs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qymnjssxsrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="72.每年接收本科及以上实习生人数（人）"
@@ -678,7 +620,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="mnjsbkjyssxsrs" v-model.number="ruleForm.mnjsbkjyssxsrs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.mnjsbkjyssxsrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="73.每年接收中医院校和中医护理专业实习生人数（人）"
@@ -687,7 +629,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="mnjszyyxhzyhlzysxsrs" v-model.number="ruleForm.mnjszyyxhzyhlzysxsrs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.mnjszyyxhzyhlzysxsrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="74.每年接收进修护士人数（人）"
@@ -696,7 +638,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="mnjsjxhsrs" v-model.number="ruleForm.mnjsjxhsrs" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.mnjsjxhsrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="75.国家级在研课题 （项) "
@@ -705,7 +647,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="gjjzykt" v-model.number="ruleForm.gjjzykt" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.gjjzykt" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="76.国家级在研课题获得经费 （万元）"
@@ -714,7 +656,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="ljjzykthdjf" v-model.number="ruleForm.ljjzykthdjf" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.ljjzykthdjf" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="77.省部级在研课题（项）"
@@ -723,7 +665,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="sbjzykt" v-model.number="ruleForm.sbjzykt" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.sbjzykt" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="78.省部级在研课题获得经费（万元）"
@@ -732,7 +674,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="sbjzykthdjf" v-model.number="ruleForm.sbjzykthdjf" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.sbjzykthdjf" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="79.市级（含大学、科学院）（项）"
@@ -741,7 +683,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="sj" v-model.number="ruleForm.sj" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.sj" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="80.市级（含大学、科学院）获得经费（万元）"
@@ -750,7 +692,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="sjhdjf" v-model.number="ruleForm.sjhdjf" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.sjhdjf" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="81.区级在研课题 （项）"
@@ -759,7 +701,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qjzykt" v-model.number="ruleForm.qjzykt" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qjzykt" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="82.区级在研课题获得经费（万元））"
@@ -768,7 +710,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="qjzykthdjf" v-model.number="ruleForm.qjzykthdjf" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.qjzykthdjf" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="83.院级在研课题（项）"
@@ -777,7 +719,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="yjzykt" v-model.number="ruleForm.yjzykt" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.yjzykt" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="84.院级在研课题获得经费 （万元）"
@@ -786,7 +728,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="yjzykthdjf" v-model.number="ruleForm.yjzykthdjf" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.yjzykthdjf" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="85.获得科研成果项目（项）请在备注栏注明"
@@ -795,7 +737,10 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="hdkycgxm" v-model.number="ruleForm.hdkycgxm" auto-complete="off"></el-input>
+                    <el-input v-model.number="modelInfo.hdkycgxm" auto-complete="off"></el-input>
+                    <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入科研成果" v-model="modelInfo.hdkycgxm_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item
                     label="86.核心期刊发表文章（篇）"
@@ -804,7 +749,7 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="hxqkfbwz" v-model.number="ruleForm.hxqkfbwz" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.hxqkfbwz" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="87.SCI收录论文数（篇）"
@@ -813,16 +758,19 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="scisllws" v-model.number="ruleForm.scisllws" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.scisllws" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="88.担任主编出版著作（部）著作名称请在备注栏注明 "
-                    prop="hlryxtjszyyzshjngwpxdbl"
+                    prop="drzbcbzz"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="drzbcbzz" v-model.number="ruleForm.drzbcbzz" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.drzbcbzz" auto-complete="off"></el-input>
+                <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入担任主编出版著作名称" v-model="modelInfo.drzbcbzz_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item
                     label="89.参编著作（部）著作名称请在备注栏注明"
@@ -831,64 +779,137 @@
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
-                <el-input type="cbzz" v-model.number="ruleForm.cbzz" auto-complete="off"></el-input>
+                <el-input  v-model.number="modelInfo.cbzz" auto-complete="off"></el-input>
+                <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入参编著作名称" v-model="modelInfo.cbzz_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                    <el-button  @click="submitForm('modelInfo')">立即创建</el-button>
+                    <el-button @click="resetForm('modelInfo')">重置</el-button>
                 </el-form-item>
                 </el-form>
         </div>
     </div>
 </template>
 <script>
-import { testFetch } from 'src/api/report'
+import { add } from 'src/api/report'
   export default {
     data() {
-      return {
-        ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+       let checkPercent = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('本字段不能为空'))
         }
-        // rules: {
-        //   name: [
-        //     { required: true, message: '请输入活动名称', trigger: 'blur' },
-        //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        //   ],
-        //   type: [
-        //     { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-        //   ],
-        //   resource: [
-        //     { required: true, message: '请选择活动资源', trigger: 'change' }
-        //   ],
-        //   desc: [
-        //     { required: true, message: '请填写活动形式', trigger: 'blur' }
-        //   ]
-        // }
+        setTimeout(() => {
+          if (!/^\d{1,2}(\.\d+)?$|^100$/.test(value)) {
+            callback(new Error('字段取值为0-100.0之间'))
+          } else {
+            callback()
+          }
+        }, 1000)
+      }
+      return {
+        modelInfo: {
+          sfjlhlzlglwyh: '否',
+          kzhlxxhjs: '否',
+          hlglxt: '否',
+          yywyzhlfwsfyy: '否',
+          kswyzhlfwsfbq: '否',
+          kswyzhlfwsfbq2: '否',
+          sfwglbhlzkpxjd: '否',
+          sfwglbhlzkpxjd2: '否',
+          lchlxxxt: '否',
+          hlzlgljg: '否'
+        },
+        rules: {
+          cshlgzdhlryzqywsjsrydbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          bqhsysjkfcwbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          zzjhbfhsysjkfcwbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          ccubfhsysjkfcwbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          ssshsysjkfssjbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          txshsytxjbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          ssysxlhszqyhsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          bkxlhszbqyhsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          dzxlhszbqqhsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          zzxlhszbqyhsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          hlglrybkysxlbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          zzyxbyhzyhlzybyhszqyhsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          qygzchsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          qyzjzchsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          qycjzchsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          qycjzchsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          hlryxtjszyyzshjngwpxdbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          zkhszqyhsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ],
+          zrzzthlfwbqzqybqsbl: [
+            { validator: checkPercent, trigger: 'blur' }
+          ]
+        }
       };
     },
     methods: {
       submitForm(formName) {
-        testFetch().then(response => {
-          console.log(response.data)
-        });
-        // this.$refs[formName].validate((valid) => {
-        //   if (valid) {
-        //     alert('submit!');
-        //     testFetch().then(response => {
-        //       console.log(response.data)
-        //     })
-        //   } else {
-        //     console.log('error submit!!');
-        //     return false;
-        //   }
+        // testFetch().then(response => {
+        //   console.log(response.data)
         // });
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            add(this.modelInfo).then(response => {
+              if (response.data.status == 2) {
+                this.$router.push('/login');
+                this.$message(response.data.message);
+                return
+              }
+              if (!response.data.status) {
+                this.$message(response.data.message);
+                return
+              }
+              this.$message({
+                message: '上报成功！',
+                type: 'success'
+              });
+              this.$router.push('/reportlist')
+            });
+          } else {
+            this.$message('请检查数据格式！');
+            return false;
+          }
+        });
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
@@ -896,3 +917,8 @@ import { testFetch } from 'src/api/report'
     }
   }
 </script>
+<style>
+input.input_dsec {
+  display: inline-block;
+}
+</style>

@@ -23,10 +23,10 @@
             <el-tab-pane label="管理员登录">
                 <el-form :model="lruleForm" :rules="lrules" ref="lruleForm" label-width="0px" class="demo-ruleForm">
                     <el-form-item prop="lusername">
-                        <el-input v-model="lruleForm.lusername" placeholder="lusername"></el-input>
+                        <el-input v-model="lruleForm.username" placeholder="lusername"></el-input>
                     </el-form-item>
                     <el-form-item prop="lpassword">
-                        <el-input type="lpassword" placeholder="lpassword" v-model="lruleForm.lpassword" @keyup.enter.native="submitForm('lruleForm')"></el-input>
+                        <el-input type="password" placeholder="password" v-model="lruleForm.password" @keyup.enter.native="submitForm('lruleForm')"></el-input>
                     </el-form-item>
                     <div class="login-btn">
                         <el-button type="primary" @click="submitFormL('lruleForm')">登录</el-button>
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import * as accountModel from 'src/api/account'
+import * as hospitalModel from 'src/api/hospital'
     export default {
         data: function(){
             return {
@@ -48,8 +50,8 @@
                     password: ''
                 },
                 lruleForm: {  
-                    lusername: '',
-                    lpassword: ''
+                    username: '',
+                    password: ''
                 },
                 rules: {
                     username: [
@@ -60,10 +62,10 @@
                     ]
                 },
                 lrules: {
-                    lusername: [
+                    username: [
                         { required: true, message: '请输入用户名', trigger: 'blur' }
                     ],
-                    lpassword: [
+                    password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
                     ]
                 }
@@ -75,10 +77,26 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
-                        localStorage.setItem('ms_username',self.ruleForm.username);
+                     hospitalModel.login(self.ruleForm.username, self.ruleForm.password).then(response => {
+                        if (!response.data.status) {
+                            this.$message({
+                                showClose: true,
+                                message: response.data.message,
+                                type: 'error'
+                            });
+                            return
+                        }
+                        this.$message({
+                          message: '登录成功！',
+                          type: 'success'
+                        });
+                        localStorage.setItem('ms_name', response.data.data.name);
+                        localStorage.setItem('ms_account', response.data.data.account);
+                        localStorage.setItem('ms_permission', response.data.data.role);
                         self.$router.push('/readme');
+                      });
                     } else {
-                        console.log('error submit!!');
+                        this.$message('请检查数据格式！');
                         return false;
                     }
                 });
@@ -88,10 +106,26 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
-                        localStorage.setItem('ms_username',self.ruleForm.username);
+                     accountModel.login(self.lruleForm.username, self.lruleForm.password).then(response => {
+                        if (!response.data.status) {
+                            this.$message({
+                                showClose: true,
+                                message: response.data.message,
+                                type: 'error'
+                            });
+                            return
+                        }
+                        this.$message({
+                          message: '登录成功！',
+                          type: 'success'
+                        });
+                        localStorage.setItem('ms_name', response.data.data.name);
+                        localStorage.setItem('ms_account', response.data.data.account);
+                        localStorage.setItem('ms_permission', response.data.data.role);
                         self.$router.push('/readme');
+                      });
                     } else {
-                        console.log('error submit!!');
+                        this.$message('请检查数据格式！');
                         return false;
                     }
                 });

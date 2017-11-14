@@ -51,7 +51,17 @@ a{text-decoration: none}
 /*BaseForm*/
 .form-box{
     width:600px;
+    min-width: 600px;
 }
+.form-box .input_desc {
+  position: absolute;
+  top: 0;
+  left: 110%;
+  width: 300px;
+}
+.form-box .input_desc .el-input {
+    width: 80%;
+  }
 .form-box .line{
     text-align: center;
 }

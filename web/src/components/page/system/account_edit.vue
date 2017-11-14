@@ -4,10 +4,10 @@
         <div class="form-box">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px" class="demo-ruleForm">
                <el-form-item
-                    label="医院名称"
+                    label="管理员姓名"
                     prop="name"
                     :rules="[
-                    { required: true, message: '医院名称不能为空'}
+                    { required: true, message: '管理员姓名不能为空'}
                     ]">
                 <el-input type="name" v-model="ruleForm.name" auto-complete="off"></el-input>
                 </el-form-item>
@@ -52,7 +52,7 @@
         },
         rules: {
           name: [
-            { required: true, message: '请输入医院名称', trigger: 'blur' }
+            { required: true, message: '请输入管理员姓名', trigger: 'blur' }
           ],
           account: [
             { required: true, message: '请输入登录名', trigger: 'blur' },

@@ -38,12 +38,12 @@ export default new Router({
                     component: resolve => require(['../components/page/BaseForm.vue'], resolve)
                 },
                 {
-                    path: '/hospitalinfo',
-                    component: resolve => require(['../components/page/hospital/info.vue'], resolve)    // 医院管理
+                    path: '/hospital',
+                    component: resolve => require(['../components/page/hospital/list.vue'], resolve)    // 医院管理
                 },
                 {
-                    path: '/systemaccount',
-                    component: resolve => require(['../components/page/system/account.vue'], resolve)    // 管理员管理
+                    path: '/account',
+                    component: resolve => require(['../components/page/system/account_list.vue'], resolve)    // 管理员管理
                 }
                 ,
                 {
