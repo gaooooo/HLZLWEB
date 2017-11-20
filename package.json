@@ -7,6 +7,7 @@
         "clear": "rimraf build",
         "start": "better-npm-run dev",
         "prod": "better-npm-run prod",
+        "publish": "better-npm-run pm2",
         "pstart": "concurrently \"npm run start\" \"npm run open\"",
         "open": "opn \"http://localhost:3604\"",
         "koa": "node run",
@@ -33,7 +34,8 @@
                 "IS_LOGIN": false,
                 "NODE_ENV": "production"
             }
-        }
+        },
+        "pm2": "npm run tsc && pm2 start ./src/common/configs/pm2/pm2.json"
     },
     "dependencies": {
         "bluebird": "^3.5.0",
