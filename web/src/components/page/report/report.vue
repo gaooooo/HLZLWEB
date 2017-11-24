@@ -9,11 +9,11 @@
         </div>
         <div class="form-box">
             <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="280px" class="demo-modelInfo">
-            <el-tooltip class="item" effect="light" content="全院开放床位数（张）" placement="top">
+            <el-tooltip class="item" effect="light" content="全院开放床位数量" placement="top">
                 <el-form-item
                     label="1.全院开放床位数（张）"
                     prop="qykfcws"
-                    :rules="[
+                    :rules="[   
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
@@ -457,7 +457,6 @@
                         <el-checkbox label="护理管理"></el-checkbox>
                         <el-checkbox label="护士继续教育系统"></el-checkbox>
                         <el-checkbox label="物品追溯" ></el-checkbox>
-                        <el-checkbox label="其他" ></el-checkbox>
                     </el-checkbox-group>
                     <div class="input_desc">
                       <span>备注：</span><el-input placeholder="请输入其他项内容" v-model="modelInfo.lchlxxxt_desc" auto-complete="off"></el-input>
@@ -807,7 +806,7 @@ import { add } from 'src/api/report'
   export default {
     data() {
        let checkPercent = (rule, value, callback) => {
-        if (value != '') {
+        if (value !== 0 && !value) {
           return callback(new Error('本字段不能为空'))
         }
         setTimeout(() => {
