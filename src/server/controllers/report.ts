@@ -57,7 +57,8 @@ export default ({ debug, logger }) => {
                     if (hospitalMap.hasOwnProperty(h)){
                       !nameMapRow[h]  && (nameMapRow[h] = [])
                       // nameMapRow[h].push(x[h+'_desc'] ? x[h] + '备注：(' + x[h+'_desc'] + ')' : x[h])
-                      nameMapRow[h].push(x[h+'_desc'] ? x[h+'_desc']: x[h])
+                      // nameMapRow[h].push(x[h+'_desc'] ? x[h+'_desc']: x[h])
+                      nameMapRow[h].push(x[h] + x[h+'_count'] && ',' + x[h+'_count'] || '' + x[h+'_desc'] && ',' + x[h+'_desc'] || '')
                     }
                    }
                    return x.hospital_name

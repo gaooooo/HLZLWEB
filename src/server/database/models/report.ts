@@ -237,6 +237,10 @@ export default (mongoose, Schema) => {
                 type: Schema.Types.String,
                 required: true
             },
+            lchlxxxt_desc: {
+                type: Schema.Types.String,
+                required: true
+            },
             hlglxt: {
                 type: Schema.Types.String,
                 required: true
@@ -261,21 +265,33 @@ export default (mongoose, Schema) => {
                 type: Schema.Types.String,
                 required: true
             },
-            kswyzhlfwsfbq_desc: {
+            kswyzhlfwsfbq_count: {
                 type: Schema.Types.Number,
+                required: false
+            },
+            kswyzhlfwsfbq_desc: {
+                type: Schema.Types.String,
                 required: false
             },
             kswyzhlfwsfbq2: {
                 type: Schema.Types.String,
                 required: true
             },
-            kswyzhlfwsfbq2_desc: {
+            kswyzhlfwsfbq2_count: {
                 type: Schema.Types.Number,
+                required: false
+            },
+            kswyzhlfwsfbq2_desc: {
+                type: Schema.Types.String,
                 required: false
             },
             sfwglbhlzkpxjd: {
                 type: Schema.Types.String,
                 required: true
+            },
+            sfwglbhlzkpxjd_count: {
+                type: Schema.Types.Number,
+                required: false
             },
             sfwglbhlzkpxjd_desc: {
                 type: Schema.Types.String,
@@ -284,6 +300,10 @@ export default (mongoose, Schema) => {
             sfwglbhlzkpxjd2: {
                 type: Schema.Types.String,
                 required: true
+            },
+            sfwglbhlzkpxjd2_count: {
+                type: Schema.Types.Number,
+                required: false
             },
             sfwglbhlzkpxjd2_desc: {
                 type: Schema.Types.String,

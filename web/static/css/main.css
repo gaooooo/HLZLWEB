@@ -57,15 +57,21 @@ a{text-decoration: none}
     width:600px;
     min-width: 600px;
 }
+.form-box .el-checkbox+.el-checkbox {
+  margin-left: 0px;
+}
 .form-box .input_desc {
   position: absolute;
   top: 0;
   left: 110%;
-  width: 300px;
+  width: 500px;
 }
 .form-box .input_desc .el-input {
     width: 80%;
-  }
+}
+.form-box .half .el-input {
+    width: 40% !important;
+}
 .form-box .line{
     text-align: center;
 }

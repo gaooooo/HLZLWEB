@@ -9,6 +9,7 @@
         </div>
         <div class="form-box">
             <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="280px" class="demo-modelInfo">
+            <el-tooltip class="item" effect="light" content="全院开放床位数（张）" placement="top">
                 <el-form-item
                     label="1.全院开放床位数（张）"
                     prop="qykfcws"
@@ -18,6 +19,7 @@
                     ]">
                 <el-input  v-model.number="modelInfo.qykfcws" auto-complete="off"></el-input>
                 </el-form-item>
+           </el-tooltip>
                  <el-form-item
                     label="2.全院重症监护病房床位数（张）"
                     prop="qyzzjhbfcws"
@@ -450,12 +452,16 @@
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
                     ]">
-                    <el-radio-group v-model="modelInfo.lchlxxxt">
-                    <el-radio label="护士工作站"></el-radio>
-                    <el-radio label="移动护理"></el-radio>
-                    <el-radio label="物品追溯"></el-radio>
-                    <el-radio label="否"></el-radio>
-                    </el-radio-group>
+                    <el-checkbox-group v-model="modelInfo.lchlxxxt">
+                        <el-checkbox label="移动护理"></el-checkbox>
+                        <el-checkbox label="护理管理"></el-checkbox>
+                        <el-checkbox label="护士继续教育系统"></el-checkbox>
+                        <el-checkbox label="物品追溯" ></el-checkbox>
+                        <el-checkbox label="其他" ></el-checkbox>
+                    </el-checkbox-group>
+                    <div class="input_desc">
+                      <span>备注：</span><el-input placeholder="请输入其他项内容" v-model="modelInfo.lchlxxxt_desc" auto-complete="off"></el-input>
+                    </div>
                 </el-form-item>
                 <el-form-item 
                     label="57.护理管理系统" 
@@ -513,8 +519,9 @@
                     <el-radio label="国家级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc">
-                      <span>备注：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq_desc" auto-complete="off"></el-input>
+                    <div class="input_desc half" v-show="modelInfo.kswyzhlfwsfbq != '否'">
+                      <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq_count" auto-complete="off"></el-input>
+                       <span>备注：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq_desc" auto-complete="off"></el-input>
                     </div>
                 </el-form-item>
                 <el-form-item 
@@ -527,8 +534,9 @@
                     <el-radio label="市级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc">
-                      <span>备注：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq2_desc" auto-complete="off"></el-input>
+                    <div class="input_desc half"  v-show="modelInfo.kswyzhlfwsfbq2 != '否'">
+                      <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq2_count" auto-complete="off"></el-input>
+                      <span>备注：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq2_desc" auto-complete="off"></el-input>
                     </div>
                 </el-form-item>
                 <el-form-item 
@@ -541,7 +549,8 @@
                     <el-radio label="国家级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc">
+                    <div class="input_desc half" v-show="modelInfo.sfwglbhlzkpxjd != '否'">
+                      <span>个数：</span><el-input placeholder="请输入基地个数" v-model="modelInfo.sfwglbhlzkpxjd_count" auto-complete="off"></el-input>
                       <span>备注：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd_desc" auto-complete="off"></el-input>
                     </div>
                 </el-form-item>
@@ -555,7 +564,8 @@
                     <el-radio label="地市级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc">
+                    <div class="input_desc half" v-show="modelInfo.sfwglbhlzkpxjd2 != '否'">
+                      <span>个数：</span><el-input placeholder="请输入基地个数" v-model="modelInfo.sfwglbhlzkpxjd2_count" auto-complete="off"></el-input>
                       <span>备注：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd2_desc" auto-complete="off"></el-input>
                     </div>
                 </el-form-item>
@@ -797,12 +807,12 @@ import { add } from 'src/api/report'
   export default {
     data() {
        let checkPercent = (rule, value, callback) => {
-        if (!value) {
+        if (value != '') {
           return callback(new Error('本字段不能为空'))
         }
         setTimeout(() => {
-          if (!/^\d{1,2}(\.\d+)?$|^100$/.test(value)) {
-            callback(new Error('字段取值为0-100.0之间'))
+          if (!/^\d{0,5}(\.\d+)?$|^500$/.test(value)) {
+            callback(new Error('字段取值为0-500.0之间'))
           } else {
             callback()
           }
@@ -818,7 +828,7 @@ import { add } from 'src/api/report'
           kswyzhlfwsfbq2: '否',
           sfwglbhlzkpxjd: '否',
           sfwglbhlzkpxjd2: '否',
-          lchlxxxt: '否',
+          lchlxxxt: [],
           hlzlgljg: '否'
         },
         rules: {
