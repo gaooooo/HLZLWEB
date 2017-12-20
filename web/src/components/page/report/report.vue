@@ -912,6 +912,8 @@ import { add } from 'src/api/report'
       }
       var check_kswyzhlfwsfbq_verify = (rule, value, callback) => {
         if (this.modelInfo.kswyzhlfwsfbq == '否') {
+          this.modelInfo.kswyzhlfwsfbq_count = ''
+          this.modelInfo.kswyzhlfwsfbq_desc = ''
           return callback()
         }
         if (!this.modelInfo.kswyzhlfwsfbq_count || this.modelInfo.kswyzhlfwsfbq_count === 0) {
@@ -927,6 +929,8 @@ import { add } from 'src/api/report'
       };
       var check_kswyzhlfwsfbq2_verify = (rule, value, callback) => {
         if (this.modelInfo.kswyzhlfwsfbq2 == '否') {
+          this.modelInfo.kswyzhlfwsfbq2_count = ''
+          this.modelInfo.kswyzhlfwsfbq2_desc = ''
           return callback()
         }
         if (!this.modelInfo.kswyzhlfwsfbq2_count || this.modelInfo.kswyzhlfwsfbq2_count === 0) {
@@ -942,6 +946,8 @@ import { add } from 'src/api/report'
       };
       var check_sfwglbhlzkpxjd_verify = (rule, value, callback) => {
         if (this.modelInfo.sfwglbhlzkpxjd == '否') {
+          this.modelInfo.sfwglbhlzkpxjd_count = ''
+          this.modelInfo.sfwglbhlzkpxjd_desc = ''
           return callback()
         }
         if (!this.modelInfo.sfwglbhlzkpxjd_count || this.modelInfo.sfwglbhlzkpxjd_count === 0) {
@@ -950,13 +956,15 @@ import { add } from 'src/api/report'
         if (!Number.isInteger(this.modelInfo.sfwglbhlzkpxjd_count)) {
           return callback(new Error('请输入数字值'));
         }
-        if (this.modelInfo.sfwglbhlzkpxjd_count > 0 && !this.modelInfo.sfwglbhlzkpxjd2_desc) {
+        if (this.modelInfo.sfwglbhlzkpxjd_count > 0 && !this.modelInfo.sfwglbhlzkpxjd_desc) {
           return callback(new Error('请填写内容'));
         }
         return callback()
       };
       var check_sfwglbhlzkpxjd2_verify = (rule, value, callback) => {
         if (this.modelInfo.sfwglbhlzkpxjd2 == '否') {
+          this.modelInfo.sfwglbhlzkpxjd2_count = ''
+          this.modelInfo.sfwglbhlzkpxjd2_desc = ''
           return callback()
         }
         if (!this.modelInfo.sfwglbhlzkpxjd2_count || this.modelInfo.sfwglbhlzkpxjd2_count === 0) {
@@ -1063,6 +1071,12 @@ import { add } from 'src/api/report'
         // });
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            // 特殊处理一些数据
+            this.modelInfo.qita === 0 && (this.modelInfo.qita_desc = '')
+            this.modelInfo.hdkycgxm === 0 && (this.modelInfo.hdkycgxm_desc = '')
+            this.modelInfo.drzbcbzz === 0 && (this.modelInfo.drzbcbzz_desc = '')
+            this.modelInfo.cbzz === 0 && (this.modelInfo.cbzz_desc = '')
+            // 调用接口
             add(this.modelInfo).then(response => {
               if (response.data.status == 2) {
                 this.$router.push('/login');

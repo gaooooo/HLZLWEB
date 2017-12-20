@@ -58,7 +58,11 @@ export default ({ debug, logger }) => {
                       !nameMapRow[h]  && (nameMapRow[h] = [])
                       // nameMapRow[h].push(x[h+'_desc'] ? x[h] + '备注：(' + x[h+'_desc'] + ')' : x[h])
                       // nameMapRow[h].push(x[h+'_desc'] ? x[h+'_desc']: x[h])
-                      nameMapRow[h].push(x[h] + (x[h+'_count'] && ',' + x[h+'_count'] || '') + (x[h+'_desc'] && ',' + x[h+'_desc'] || ''))
+                      if (typeof x[h] === 'undefined') {
+                        nameMapRow[h].push('')
+                      } else {
+                        nameMapRow[h].push(x[h] + (x[h+'_count'] && ',' + x[h+'_count'] || '') + (x[h+'_desc'] && ',' + x[h+'_desc'] || ''))
+                      }
                     }
                    }
                    return x.hospital_name

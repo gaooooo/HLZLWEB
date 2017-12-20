@@ -15,13 +15,13 @@
         </div>
         <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="name" label="医院名称" sortable width="150">
+            <el-table-column prop="name" label="医院名称" sortable>
             </el-table-column>
-            <el-table-column prop="account" label="登录名" width="120">
+            <el-table-column prop="account" label="登录名" width="200">
             </el-table-column>
-            <el-table-column prop="updateTimeString" label="最后一次更新时间">
+            <el-table-column prop="updateTimeString" label="最后一次更新时间" width="200">
             </el-table-column>
-            <el-table-column label="操作" width="180">
+            <el-table-column label="操作" width="200">
                 <template scope="scope">
                     <el-button size="small"
                             @click="handleEdit(scope.$index, scope.row)">编辑</el-button>

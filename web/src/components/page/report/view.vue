@@ -118,8 +118,8 @@
           <td>{{row.qycjzchsbl}}</td>
         </tr>
         <tr>
-          <td class="scanner-modal__tit">39.护理人员系统接受中医药知识和技能岗位培训（3年培训时间≥100学时）的比例（%）</td>
-          <td colspan="3">{{row.hlryxtjszyyzshjngwpxdbl}}</td>
+          <td colspan="3"class="scanner-modal__tit">39.护理人员系统接受中医药知识和技能岗位培训（3年培训时间≥100学时）的比例（%）</td>
+          <td>{{row.hlryxtjszyyzshjngwpxdbl}}</td>
         </tr>
         <tr>
           <td class="scanner-modal__tit">40.全年外派进修人员总数（人）</td>
@@ -161,7 +161,7 @@
           <td class="scanner-modal__tit">52.老年专科护士总数（人）</td>
           <td>{{row.lnzkhszs}}</td>
           <td class="scanner-modal__tit">53.其他（请在备注栏注明 ）</td>
-          <td >{{row.cshlgzhszs + (row.cshlgzhszs && ',' + row.cshlgzhszs || '')}}</td>
+          <td >{{row.qita + (row.qita_desc && ',' + row.qita_desc || '')}}</td>
         </tr>
         <tr>
           <td class="scanner-modal__tit">54.护理质量管理架构</td>
@@ -173,19 +173,17 @@
           <td class="scanner-modal__tit">56.开展护理信息化建设</td>
           <td>{{row.kzhlxxhjs}}</td>
           <td class="scanner-modal__tit">57.临床护理信息系统</td>
-          <td>{{row.lchlxxxt}}</td>
+          <td>{{row.lchlxxxt + (row.lchlxxxt_desc && ',' + row.lchlxxxt_desc || '')}}</td>
         </tr>
         <tr>
           <td class="scanner-modal__tit">58.全院病区总数（个）</td>
-          <td colspan="3">{{row.qybqzs}}</td>
-        </tr>
-        <tr>
+          <td>{{row.qybqzs}}</td>
           <td class="scanner-modal__tit">59.全院实施责任制整体护理服务模式病区数（个）</td>
           <td>{{row.qysszrzzthlfwmsbqs}}</td>
-          <td class="scanner-modal__tit">60.责任制整体护理服务病区占全院病区数比例（%）</td>
-          <td>{{row.zrzzthlfwbqzqybqsbl}}</td>
         </tr>
         <tr>
+          <td class="scanner-modal__tit">60.责任制整体护理服务病区占全院病区数比例（%）</td>
+          <td>{{row.zrzzthlfwbqzqybqsbl}}</td>
           <td class="scanner-modal__tit">61.医院为优质护理服务示范医院</td>
           <td colspan="3">{{row.yywyzhlfwsfyy}}</td>
         </tr>
@@ -269,9 +267,9 @@
         </tr>
         <tr>
           <td class="scanner-modal__tit">88.担任主编出版著作（部）著作名称请在备注栏注明</td>
-          <td>{{row.drzbcbzz + (row.drzbcbzz && ',' + row.drzbcbzz || '')}}</td>
+          <td>{{row.drzbcbzz + (row.drzbcbzz_desc && ',' + row.drzbcbzz_desc || '')}}</td>
           <td class="scanner-modal__tit">89.参编著作（部）著作名称请在备注栏注明</td>
-          <td>{{row.cbzz + (row.cbzz > 0 ? '(' + row.cbzz_desc + ')' : '')}}</td>
+          <td>{{row.cbzz + (row.cbzz_desc && ',' + row.cbzz_desc || '')}}</td>
         </tr>
         </tbody>
       </table>

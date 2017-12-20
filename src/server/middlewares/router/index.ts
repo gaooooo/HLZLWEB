@@ -25,45 +25,45 @@ export default async ({ debug, logger }) => {
     router.use((APP_CONFIG.apiPrefix || '') + routerItem.name, routerItem.router.routes(), routerItem.router.allowedMethods())
   })
   return [
-    async (ctx, next) => {
-      ctx.getUserName = function () {
-        return ctx.session.currentUser || ''
-      }
-      //权 限验证相关
-      const username = ctx.getUserName()
-      if (ctx.path.indexOf('login') !== -1 || username) {
-        return await next()
-      } else {
-        ctx.body = JSONResponse(2, null, '登录超时！')
-        // ctx.originalUrl = '/login'
-        // ctx.url = '/login'
-        // await next()
-      }
-    },
     // async (ctx, next) => {
     //   ctx.getUserName = function () {
-    //     return ctx.cookies.get('username') || ''
+    //     return ctx.session.currentUser || ''
     //   }
-    //   if (appUtils.isDev() || !appUtils.isLogin()) {
-    //     return await next()
-    //   }
-    //   //权限验证相关
+    //   //权 限验证相关
     //   const username = ctx.getUserName()
-    //   if (ctx.method !== 'GET' || ctx.path.includes('.') || ['/login', '/logout'].includes(ctx.path) || username) {
+    //   if (ctx.path.indexOf('login') !== -1 || username) {
     //     return await next()
     //   } else {
-    //     ctx.originalUrl = '/login'
-    //     ctx.url = '/login'
-    //     await next()
+    //     ctx.body = JSONResponse(2, null, '登录超时！')
+    //     // ctx.originalUrl = '/login'
+    //     // ctx.url = '/login'
+    //     // await next()
     //   }
     // },
-    // async (ctx, next) => {
-    //   await next()
-    //   if (ctx.status === 404) {
-    //     ctx.status = 404
-    //     await ctx.render('pug/404.pug')
-    //   }
-    // },
+    async (ctx, next) => {
+      ctx.getUserName = function () {
+        return ctx.cookies.get('username') || ''
+      }
+      if (appUtils.isDev() || !appUtils.isLogin()) {
+        return await next()
+      }
+      //权限验证相关
+      const username = ctx.getUserName()
+      if (ctx.method !== 'GET' || ctx.path.includes('.') || ['/login', '/logout'].includes(ctx.path) || username) {
+        return await next()
+      } else {
+        ctx.originalUrl = '/login'
+        ctx.url = '/login'
+        await next()
+      }
+    },
+    async (ctx, next) => {
+      await next()
+      if (ctx.status === 404) {
+        ctx.status = 404
+        await ctx.render('pug/404.pug')
+      }
+    },
     [router.routes(), router.allowedMethods()]
   ]
 }
