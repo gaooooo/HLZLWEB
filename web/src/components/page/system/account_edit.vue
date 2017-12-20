@@ -2,7 +2,7 @@
 <template>
   <div style="text-align:right">
         <div class="form-box">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px" class="demo-ruleForm">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px" class="system-form">
                <el-form-item
                     label="管理员姓名"
                     prop="name"

@@ -221,6 +221,10 @@ export default (mongoose, Schema) => {
                 type: Schema.Types.String,
                 required: true
             },
+            qita_desc: {
+                type: Schema.Types.String,
+                required: true
+            },
             hlzlgljg: {
                 type: Schema.Types.String,
                 required: true
@@ -241,8 +245,8 @@ export default (mongoose, Schema) => {
                 type: Schema.Types.String,
                 required: true
             },
-            hlglxt: {
-                type: Schema.Types.String,
+            lnzkhszs: {
+                type: Schema.Types.Number,
                 required: true
             },
             qybqzs: {

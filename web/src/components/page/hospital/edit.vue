@@ -2,7 +2,7 @@
 <template>
   <div style="text-align:right">
         <div class="form-box">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px" class="demo-ruleForm">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px" class="hosipital-form">
                <el-form-item
                     label="医院名称"
                     prop="name"

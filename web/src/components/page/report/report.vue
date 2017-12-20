@@ -7,9 +7,9 @@
                 <el-breadcrumb-item>数据上报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="form-box">
-            <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="280px" class="demo-modelInfo">
-            <el-tooltip class="item" effect="light" content="全院开放床位数量" placement="top">
+        <div class="form-box report">
+            <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="420px" class="report-form">
+            
                 <el-form-item
                     label="1.全院开放床位数（张）"
                     prop="qykfcws"
@@ -19,7 +19,7 @@
                     ]">
                 <el-input  v-model.number="modelInfo.qykfcws" auto-complete="off"></el-input>
                 </el-form-item>
-           </el-tooltip>
+           
                  <el-form-item
                     label="2.全院重症监护病房床位数（张）"
                     prop="qyzzjhbfcws"
@@ -38,6 +38,7 @@
                     ]">
                 <el-input  v-model.number="modelInfo.qyzchszs" auto-complete="off"></el-input>
                 </el-form-item>
+                <el-tooltip class="item" effect="light" content="与医院签订劳务合同，尚未取得护士执业证书" placement="top">
                  <el-form-item
                     label="4.未注册护士总数（人）"
                     prop="wzchszs"
@@ -47,6 +48,8 @@
                     ]">
                 <el-input  v-model.number="modelInfo.wzchszs" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
+                <el-tooltip class="item" effect="light" content="含未注册护士" placement="top">
                  <el-form-item
                     label="5.从事护理工作护士总数（人）"
                     prop="cshlgzhszs"
@@ -56,11 +59,13 @@
                     ]">
                 <el-input  v-model.number="modelInfo.cshlgzhszs" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
                  <el-form-item
                     label="6.从事护理工作的护理人员占全院卫生技术人员的比例（%）"
                     prop="cshlgzdhlryzqywsjsrydbl">
                     <el-input  v-model="modelInfo.cshlgzdhlryzqywsjsrydbl" auto-complete="off"></el-input>
                 </el-form-item>
+                <el-tooltip class="item" effect="light" content="不包含：护理部、供应室、医院感染办公室的护理人员" placement="top">
                  <el-form-item
                     label="7.临床岗位护士总数（人）"
                     prop="lcgwhszs"
@@ -70,6 +75,8 @@
                     ]">
                 <el-input  v-model.number="modelInfo.lcgwhszs" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
+                <el-tooltip class="item" effect="light" content="不包含：ICU、CCU、手术室" placement="top">
                  <el-form-item
                     label="8.全院病区注册护士总数（人）"
                     prop="qybqzchszs"
@@ -79,6 +86,7 @@
                     ]">
                 <el-input  v-model.number="modelInfo.qybqzchszs" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
                  <el-form-item
                     label="9.病区护士与实际开放床位比例（%） "
                     prop="bqhsysjkfcwbl">
@@ -182,7 +190,7 @@
                 <el-input  v-model.number="modelInfo.qybkxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
-                    label="23.本科学历护士占比全院护士比例（%）"
+                    label="23.本科学历护士占全院护士比例（%）"
                     prop="bkxlhszbqyhsbl">
                 <el-input  v-model.number="modelInfo.bkxlhszbqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
@@ -196,7 +204,7 @@
                 <el-input  v-model.number="modelInfo.qydzxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
-                    label="25.大专学历护士占比全院护士比例（%）"
+                    label="25.大专学历护士占全院护士比例（%）"
                     prop="dzxlhszbqqhsbl">
                 <el-input  v-model.number="modelInfo.dzxlhszbqqhsbl" auto-complete="off"></el-input>
                 </el-form-item>
@@ -210,15 +218,17 @@
                 <el-input  v-model.number="modelInfo.qyzzxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
-                    label="27.中专学历护士占比全院护士比例（%）"
+                    label="27.中专学历护士占全院护士比例（%）"
                     prop="zzxlhszbqyhsbl">
                 <el-input  v-model.number="modelInfo.zzxlhszbqyhsbl" auto-complete="off"></el-input>
                 </el-form-item>
+                <el-tooltip class="item" effect="light" content="护理管理人员范围：护理部人员（例如：正/副主任、干事/科员等）、护士长、片区护士长、护理出身的主管护理工作院长" placement="top">
                  <el-form-item
                     label="28.护理管理人员本科以上学历比例(%)"
                     prop="hlglrybkysxlbl">
                 <el-input  v-model.number="modelInfo.hlglrybkysxlbl" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
                  <el-form-item
                     label="29.中医院校毕业和中医护理专业毕业护士数（人）"
                     prop="zyyxbyhzyhlzybyhss"
@@ -243,7 +253,7 @@
                 <el-input  v-model.number="modelInfo.qyzrhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
-                    label="32.副主任护师总数（人）"
+                    label="32.全院副主任护师总数（人）"
                     prop="fzrhszs"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
@@ -288,18 +298,23 @@
                     ]">
                 <el-input  v-model.number="modelInfo.qyhszs2" auto-complete="off"></el-input>
                 </el-form-item>
+                <el-tooltip class="item" effect="light" content="初级职称范围：护士、护师" placement="top">
                 <el-form-item
                     label="38.全院初级职称护士比例（%）"
                     prop="qycjzchsbl">
                 <el-input  v-model.number="modelInfo.qycjzchsbl" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
+                <el-tooltip class="item" effect="light" content="培训时间为：2014年——2016年" placement="top">
                 <el-form-item
                     label="39.护理人员系统接受中医药知识和技能岗位培训（3年培训时间≥100学时）的比例（%）"
                     prop="hlryxtjszyyzshjngwpxdbl">
                 <el-input  v-model.number="modelInfo.hlryxtjszyyzshjngwpxdbl" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
+                 <el-tooltip class="item" effect="light" content="进修时间不少于1个月" placement="top">
                 <el-form-item
-                    label="40.外派进修人员总数（人）"
+                    label="40.全年外派进修人员总数（人）"
                     prop="wpjxwyzs"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
@@ -307,6 +322,7 @@
                     ]">
                 <el-input  v-model.number="modelInfo.wpjxwyzs" auto-complete="off"></el-input>
                 </el-form-item>
+                </el-tooltip>
                 <el-form-item
                     label="41.全院有专科护士资格认证总人数（人）"
                     prop="qyyzkhszgrzzrs"
@@ -317,7 +333,7 @@
                 <el-input  v-model.number="modelInfo.qyyzkhszgrzzrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
-                    label="42.专科护士占全院护士比例（%）"
+                    label="42.专科资格认证护士占全院护士比例（%）"
                     prop="zkhszqyhsbl"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
@@ -407,12 +423,34 @@
                 <el-input  v-model.number="modelInfo.xdgyzxzkhszs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
-                    label="52.其他（请在备注栏注明 ）"
-                    prop="qita">
-                <el-input   :autosize="{minRows: 2, maxRows: 4}" v-model="modelInfo.qita" auto-complete="off"></el-input>
+                    label="52.老年专科护士总数（人）"
+                    prop="lnzkhszs"
+                    :rules="[
+                    { required: true, message: '本字段不能为空'},
+                    { type: 'number', message: '本字段必须为数字值'}
+                    ]">
+                <el-input  v-model.number="modelInfo.lnzkhszs" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item
+                    label="53.其他（请在备注栏注明 ）"
+                    prop="qita"
+                    :rules="[
+                    { required: true, message: '本字段不能为空'},
+                    { type: 'number', message: '本字段必须为数字值'}
+                    ]">
+                <el-input :autosize="{minRows: 2, maxRows: 4}" v-model.number="modelInfo.qita" auto-complete="off"></el-input>
+                <!--<div class="input_desc">
+                    <span>备注：</span><el-input placeholder="请输入其他项内容" v-model="modelInfo.qita_desc" auto-complete="off"></el-input>
+                </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="parseInt(modelInfo.qita) > 0"
+                    label="备注："
+                    prop="qita_desc">
+                    <el-input placeholder="请输入其他项内容" v-model="modelInfo.qita_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item 
-                    label="53.护理质量管理架构" 
+                    label="54.护理质量管理架构" 
                     prop="hlzlgljg"
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
@@ -425,7 +463,7 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item 
-                    label="54.是否建立护理质量管理委员会" 
+                    label="55.是否建立护理质量管理委员会" 
                     prop="sfjlhlzlglwyh"
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
@@ -436,7 +474,7 @@
                     </el-radio-group>
                 </el-form-item>
                <el-form-item 
-                    label="55.开展护理信息化建设" 
+                    label="56.开展护理信息化建设" 
                     prop="kzhlxxhjs"
                     :rules="[
                     { required: true, message: '本字段不能为空'} 
@@ -447,10 +485,10 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item 
-                    label="56.临床护理信息系统" 
+                    label="57.临床护理信息系统" 
                     prop="lchlxxxt"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空' } 
                     ]">
                     <el-checkbox-group v-model="modelInfo.lchlxxxt">
                         <el-checkbox label="移动护理"></el-checkbox>
@@ -458,11 +496,16 @@
                         <el-checkbox label="护士继续教育系统"></el-checkbox>
                         <el-checkbox label="物品追溯" ></el-checkbox>
                     </el-checkbox-group>
-                    <div class="input_desc">
+                    <!--<div class="input_desc">
                       <span>备注：</span><el-input placeholder="请输入其他项内容" v-model="modelInfo.lchlxxxt_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
                 </el-form-item>
-                <el-form-item 
+                <el-form-item
+                    label="备注："
+                    prop="lchlxxxt_desc">
+                    <el-input placeholder="请输入临床护理信息系统其他项内容" v-model="modelInfo.lchlxxxt_desc" auto-complete="off"></el-input>
+                </el-form-item>
+                <!--<el-form-item 
                     label="57.护理管理系统" 
                     prop="hlglxt"
                     :rules="[
@@ -472,7 +515,7 @@
                     <el-radio label="是"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                </el-form-item>
+                </el-form-item>-->
                 <el-form-item
                     label="58.全院病区总数（个）"
                     prop="qybqzs"
@@ -518,10 +561,18 @@
                     <el-radio label="国家级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc half" v-show="modelInfo.kswyzhlfwsfbq != '否'">
+                    <!--<div class="input_desc half" v-show="modelInfo.kswyzhlfwsfbq != '否'">
                       <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq_count" auto-complete="off"></el-input>
                        <span>备注：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="modelInfo.kswyzhlfwsfbq!='否'"
+                    class="half"
+                    label="备注："
+                    prop="kswyzhlfwsfbq_verify">
+                    <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model.number="modelInfo.kswyzhlfwsfbq_count" auto-complete="off"></el-input>
+                      <span>内容：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item 
                     label="63.科室为优质护理服务示范病区 （个）" 
@@ -533,10 +584,18 @@
                     <el-radio label="市级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc half"  v-show="modelInfo.kswyzhlfwsfbq2 != '否'">
+                    <!--<div class="input_desc half"  v-show="modelInfo.kswyzhlfwsfbq2 != '否'">
                       <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model="modelInfo.kswyzhlfwsfbq2_count" auto-complete="off"></el-input>
                       <span>备注：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq2_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="modelInfo.kswyzhlfwsfbq2!='否'"
+                    class="half"
+                    label="备注："
+                    prop="kswyzhlfwsfbq2_verify">
+                    <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model.number="modelInfo.kswyzhlfwsfbq2_count" auto-complete="off"></el-input>
+                      <span>内容：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq2_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item 
                     label="64.是否为各类别护理专科培训基地（基地名称请在备注栏注明）" 
@@ -548,10 +607,18 @@
                     <el-radio label="国家级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc half" v-show="modelInfo.sfwglbhlzkpxjd != '否'">
+                    <!--<div class="input_desc half" v-show="modelInfo.sfwglbhlzkpxjd != '否'">
                       <span>个数：</span><el-input placeholder="请输入基地个数" v-model="modelInfo.sfwglbhlzkpxjd_count" auto-complete="off"></el-input>
                       <span>备注：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="modelInfo.sfwglbhlzkpxjd!='否'"
+                    class="half"
+                    label="备注："
+                    prop="sfwglbhlzkpxjd_verify">
+                    <span>个数：</span><el-input placeholder="请输入基地个数" v-model.number="modelInfo.sfwglbhlzkpxjd_count" auto-complete="off"></el-input>
+                      <span>内容：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item 
                     label="65.是否为各类别护理专科培训基地（基地名称请在备注栏注明）" 
@@ -563,10 +630,18 @@
                     <el-radio label="地市级"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
-                    <div class="input_desc half" v-show="modelInfo.sfwglbhlzkpxjd2 != '否'">
+                    <!--<div class="input_desc half" v-show="modelInfo.sfwglbhlzkpxjd2 != '否'">
                       <span>个数：</span><el-input placeholder="请输入基地个数" v-model="modelInfo.sfwglbhlzkpxjd2_count" auto-complete="off"></el-input>
                       <span>备注：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd2_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="modelInfo.sfwglbhlzkpxjd2!='否'"
+                    class="half"
+                    label="备注："
+                    prop="sfwglbhlzkpxjd2_verify">
+                    <span>个数：</span><el-input placeholder="请输入基地个数" v-model.number="modelInfo.sfwglbhlzkpxjd2_count" auto-complete="off"></el-input>
+                    <span>内容：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd2_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="66.全院落实国家中医药管理局重点专科护理方案病种数（个）"
@@ -623,7 +698,7 @@
                 <el-input  v-model.number="modelInfo.qymnjssxsrs" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
-                    label="72.每年接收本科及以上实习生人数（人）"
+                    label="72.每年接收本科及以上学历实习生人数（人）"
                     prop="mnjsbkjyssxsrs"
                     :rules="[
                     { required: true, message: '本字段不能为空'},
@@ -747,9 +822,15 @@
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
                     <el-input v-model.number="modelInfo.hdkycgxm" auto-complete="off"></el-input>
-                    <div class="input_desc">
+                    <!--<div class="input_desc">
                       <span>备注：</span><el-input placeholder="请输入科研成果" v-model="modelInfo.hdkycgxm_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="parseInt(modelInfo.hdkycgxm) > 0"
+                    label="备注："
+                    prop="hdkycgxm_desc">
+                    <el-input placeholder="请输入科研成果" v-model="modelInfo.hdkycgxm_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="86.核心期刊发表文章（篇）"
@@ -777,9 +858,15 @@
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
                 <el-input  v-model.number="modelInfo.drzbcbzz" auto-complete="off"></el-input>
-                <div class="input_desc">
+                    <!--<div class="input_desc">
                       <span>备注：</span><el-input placeholder="请输入担任主编出版著作名称" v-model="modelInfo.drzbcbzz_desc" auto-complete="off"></el-input>
-                    </div>
+                    </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="parseInt(modelInfo.drzbcbzz) > 0"
+                    label="备注："
+                    prop="drzbcbzz_desc">
+                    <el-input placeholder="请输入担任主编出版著作名称" v-model="modelInfo.drzbcbzz_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="89.参编著作（部）著作名称请在备注栏注明"
@@ -789,9 +876,15 @@
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
                 <el-input  v-model.number="modelInfo.cbzz" auto-complete="off"></el-input>
-                <div class="input_desc">
-                      <span>备注：</span><el-input placeholder="请输入参编著作名称" v-model="modelInfo.cbzz_desc" auto-complete="off"></el-input>
-                    </div>
+                <!--<div class="input_desc">
+                    <span>备注：</span><el-input placeholder="请输入参编著作名称" v-model="modelInfo.cbzz_desc" auto-complete="off"></el-input>
+                </div>-->
+                </el-form-item>
+                <el-form-item
+                    v-show="parseInt(modelInfo.cbzz) > 0"
+                    label="备注："
+                    prop="cbzz_desc">
+                    <el-input placeholder="请输入参编著作名称" v-model="modelInfo.cbzz_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button  @click="submitForm('modelInfo')">立即创建</el-button>
@@ -817,11 +910,71 @@ import { add } from 'src/api/report'
           }
         }, 1000)
       }
+      var check_kswyzhlfwsfbq_verify = (rule, value, callback) => {
+        if (this.modelInfo.kswyzhlfwsfbq == '否') {
+          return callback()
+        }
+        if (!this.modelInfo.kswyzhlfwsfbq_count || this.modelInfo.kswyzhlfwsfbq_count === 0) {
+          return callback(new Error('请填写个数'));
+        }
+        if (!Number.isInteger(this.modelInfo.kswyzhlfwsfbq_count)) {
+          return callback(new Error('请输入数字值'));
+        }
+        if (this.modelInfo.kswyzhlfwsfbq_count > 0 && !this.modelInfo.kswyzhlfwsfbq_desc) {
+          return callback(new Error('请填写内容'));
+        }
+        return callback()
+      };
+      var check_kswyzhlfwsfbq2_verify = (rule, value, callback) => {
+        if (this.modelInfo.kswyzhlfwsfbq2 == '否') {
+          return callback()
+        }
+        if (!this.modelInfo.kswyzhlfwsfbq2_count || this.modelInfo.kswyzhlfwsfbq2_count === 0) {
+          return callback(new Error('请填写个数'));
+        }
+        if (!Number.isInteger(this.modelInfo.kswyzhlfwsfbq2_count)) {
+          return callback(new Error('请输入数字值'));
+        }
+        if (this.modelInfo.kswyzhlfwsfbq2_count > 0 && !this.modelInfo.kswyzhlfwsfbq2_desc) {
+          return callback(new Error('请填写内容'));
+        }
+        return callback()
+      };
+      var check_sfwglbhlzkpxjd_verify = (rule, value, callback) => {
+        if (this.modelInfo.sfwglbhlzkpxjd == '否') {
+          return callback()
+        }
+        if (!this.modelInfo.sfwglbhlzkpxjd_count || this.modelInfo.sfwglbhlzkpxjd_count === 0) {
+          return callback(new Error('请填写个数'));
+        }
+        if (!Number.isInteger(this.modelInfo.sfwglbhlzkpxjd_count)) {
+          return callback(new Error('请输入数字值'));
+        }
+        if (this.modelInfo.sfwglbhlzkpxjd_count > 0 && !this.modelInfo.sfwglbhlzkpxjd2_desc) {
+          return callback(new Error('请填写内容'));
+        }
+        return callback()
+      };
+      var check_sfwglbhlzkpxjd2_verify = (rule, value, callback) => {
+        if (this.modelInfo.sfwglbhlzkpxjd2 == '否') {
+          return callback()
+        }
+        if (!this.modelInfo.sfwglbhlzkpxjd2_count || this.modelInfo.sfwglbhlzkpxjd2_count === 0) {
+          return callback(new Error('请填写个数'));
+        }
+        if (!Number.isInteger(this.modelInfo.sfwglbhlzkpxjd2_count)) {
+          return callback(new Error('请输入数字值'));
+        }
+        if (this.modelInfo.sfwglbhlzkpxjd2_count > 0 && !this.modelInfo.sfwglbhlzkpxjd2_desc) {
+          return callback(new Error('请填写内容'));
+        }
+        return callback()
+      };
       return {
         modelInfo: {
           sfjlhlzlglwyh: '否',
           kzhlxxhjs: '否',
-          hlglxt: '否',
+          // hlglxt: '否',
           yywyzhlfwsfyy: '否',
           kswyzhlfwsfbq: '否',
           kswyzhlfwsfbq2: '否',
@@ -887,6 +1040,18 @@ import { add } from 'src/api/report'
           ],
           zrzzthlfwbqzqybqsbl: [
             { validator: checkPercent, trigger: 'blur' }
+          ],
+          kswyzhlfwsfbq_verify: [
+            { validator: check_kswyzhlfwsfbq_verify, trigger: 'blur'}
+          ],
+          kswyzhlfwsfbq2_verify: [
+            { validator: check_kswyzhlfwsfbq2_verify, trigger: 'blur'}
+          ],
+          sfwglbhlzkpxjd_verify: [
+            { validator: check_sfwglbhlzkpxjd_verify, trigger: 'blur'}
+          ],
+          sfwglbhlzkpxjd2_verify: [
+            { validator: check_sfwglbhlzkpxjd2_verify, trigger: 'blur'}
           ]
         }
       };

@@ -46,7 +46,7 @@
         </div>
     </div>
     <el-dialog
-        :title="查看"
+        title="查看"
         :visible.sync="viewDialogVisible"
         width="30%"
         v-if="viewDialogVisible"

@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
-
-export default new Router({
+  const router = new Router({
     routes: [
         {
             path: '/',
@@ -58,3 +57,14 @@ export default new Router({
         }
     ]
 })
+router.beforeEach((to, from, next) => {
+    if (to.matched[0].path.indexOf('login') === -1) {
+      if (!window.is_login) {
+        next({ path: '/login' })
+        return
+      }
+    }
+    next()
+})
+
+export default router

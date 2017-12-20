@@ -53,31 +53,41 @@ a{text-decoration: none}
     opacity: 0;
 }
 /*BaseForm*/
-.form-box{
-    width:600px;
-    min-width: 600px;
+.report{
+    width: 900px;
+    min-width: 900px;
 }
-.form-box .el-checkbox+.el-checkbox {
+.report .el-checkbox+.el-checkbox {
   margin-left: 0px;
 }
-.form-box .input_desc {
+.report .input_desc {
   position: absolute;
   top: 0;
   left: 110%;
   width: 500px;
 }
-.form-box .input_desc .el-input {
+.report .input_desc .el-input {
     width: 80%;
 }
-.form-box .half .el-input {
+.report .half .el-input {
     width: 40% !important;
 }
-.form-box .line{
+.report .line{
     text-align: center;
 }
 .el-time-panel__content::after, .el-time-panel__content::before {
     margin-top: -7px;
 }
+/*system-form*/
+.el-form-item__content {
+    text-align: left;
+}
+.system-form .el-form-item__content .el-input{
+  width: 80%;
+}
+.hosipital-form .el-form-item__content .el-input{
+    width: 80%;
+  }
 /*Readme*/
 .ms-doc .el-checkbox__input.is-disabled+.el-checkbox__label{
     color: #333;

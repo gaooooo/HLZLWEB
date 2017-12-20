@@ -77,12 +77,14 @@ import * as hospitalModel from 'src/api/hospital'
                                 message: response.data.message,
                                 type: 'error'
                             });
+                            window.is_login = false
                             return
                         }
                         this.$message({
                           message: '登录成功！',
                           type: 'success'
                         });
+                        window.is_login = true
                         localStorage.setItem('ms_name', response.data.data.name);
                         localStorage.setItem('ms_account', response.data.data.account);
                         localStorage.setItem('ms_permission', response.data.data.role);
