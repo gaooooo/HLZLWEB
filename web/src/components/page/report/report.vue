@@ -167,7 +167,7 @@
                 <el-input  v-model.number="modelInfo.qybsxlhss" auto-complete="off"></el-input>
                 </el-form-item>
                  <el-form-item
-                    label="20.硕士学历护士数（人）"
+                    label="20.全院硕士学历护士数（人）"
                     prop="ssxlhss"
                     :rules="[
                     { required: true, message: '本字段不能为空'},

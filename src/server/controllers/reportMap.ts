@@ -20,7 +20,7 @@ export default {
     txshsytxjbl: '透析室护士与透析机比例（%）',
     qnlzhszs: '全年离职护士总数（人）',
     qybsxlhss: '全院博士学历护士数（人）',
-    ssxlhss: '硕士学历护士数（人）',
+    ssxlhss: '全院硕士学历护士数（人）',
     ssysxlhszqyhsbl: '硕士以上学历护士占全院护士比例（%）',
     qybkxlhss: '全院本科学历护士数（人）',
     bkxlhszbqyhsbl: '本科学历护士占全院护士比例（%）',
