@@ -10,7 +10,7 @@
         <div class="handle-box">
            <el-button type="primary" icon="plus" class="handle-del mr10" @click="handleAdd">添加</el-button>
             <el-button type="primary" icon="delete" class="handle-del mr10" @click="handleDelAll">批量删除</el-button>
-            <el-input v-model="select_word" placeholder="请输入医院名称搜索" class="handle-input mr10"></el-input>
+            <el-input v-model="select_word" placeholder="请输入管理员姓名搜索" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
         </div>
         <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
