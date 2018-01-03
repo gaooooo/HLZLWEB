@@ -305,7 +305,7 @@
                 <el-input  v-model.number="modelInfo.qycjzchsbl" auto-complete="off"></el-input>
                 </el-form-item>
                 </el-tooltip>
-                <el-tooltip class="item" effect="light" content="培训时间为：2014年——2016年" placement="top">
+                <el-tooltip class="item" effect="light" content="培训时间为：2015年——2017年" placement="top">
                 <el-form-item
                     label="39.护理人员系统接受中医药知识和技能岗位培训（3年培训时间≥100学时）的比例（%）"
                     prop="hlryxtjszyyzshjngwpxdbl">
@@ -486,10 +486,7 @@
                 </el-form-item>
                 <el-form-item 
                     label="57.临床护理信息系统" 
-                    prop="lchlxxxt"
-                    :rules="[
-                    { required: true, message: '本字段不能为空' } 
-                    ]">
+                    prop="lchlxxxt">
                     <el-checkbox-group v-model="modelInfo.lchlxxxt">
                         <el-checkbox label="移动护理"></el-checkbox>
                         <el-checkbox label="护理管理"></el-checkbox>
