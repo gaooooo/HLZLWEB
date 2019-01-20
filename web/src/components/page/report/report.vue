@@ -7,6 +7,9 @@
                 <el-breadcrumb-item>数据上报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+        <!-- <div class="page-component-up">
+            <i class="el-icon-caret-top"></i>
+        </div> -->
         <div class="form-box report">
             <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="420px" class="report-form">
             
@@ -884,8 +887,9 @@
                     <el-input placeholder="请输入参编著作名称" v-model="modelInfo.cbzz_desc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button  @click="submitForm('modelInfo')">立即创建</el-button>
-                    <el-button @click="resetForm('modelInfo')">重置</el-button>
+                    <el-button :plain="true"  type="info"  @click="tempSave('modelInfo')">临时保存</el-button>
+                    <el-button :plain="true"  type="success"  @click="submitForm('modelInfo')">立即上报</el-button>
+                    <el-button :plain="true"  type="danger" @click="resetForm('modelInfo')">重置</el-button>
                 </el-form-item>
                 </el-form>
         </div>
@@ -1062,6 +1066,37 @@ import { add } from 'src/api/report'
       };
     },
     methods: {
+      tempSave() {
+        try {
+            // 特殊处理一些数据
+            this.modelInfo.qita === 0 && (this.modelInfo.qita_desc = '')
+            this.modelInfo.hdkycgxm === 0 && (this.modelInfo.hdkycgxm_desc = '')
+            this.modelInfo.drzbcbzz === 0 && (this.modelInfo.drzbcbzz_desc = '')
+            this.modelInfo.cbzz === 0 && (this.modelInfo.cbzz_desc = '')
+            // 调用接口
+            // 临时保存
+            this.modelInfo.state = 0
+            add(this.modelInfo).then(response => {
+            if (response.data.status == 2) {
+                this.$router.push('/login');
+                this.$message(response.data.message);
+                return
+            }
+            if (!response.data.status) {
+                this.$message(response.data.message);
+                return
+            }
+            this.$message({
+                message: '临时保存成功！',
+                type: 'success'
+            });
+            this.$router.push('/reportlist')
+          });
+        } catch (ex) {
+          this.$message('临时保存错误，' + response.data.message);
+          return
+        }
+      },
       submitForm(formName) {
         // testFetch().then(response => {
         //   console.log(response.data)
@@ -1074,6 +1109,8 @@ import { add } from 'src/api/report'
             this.modelInfo.drzbcbzz === 0 && (this.modelInfo.drzbcbzz_desc = '')
             this.modelInfo.cbzz === 0 && (this.modelInfo.cbzz_desc = '')
             // 调用接口
+            // 立即上报
+            this.modelInfo.state = 1
             add(this.modelInfo).then(response => {
               if (response.data.status == 2) {
                 this.$router.push('/login');
@@ -1105,5 +1142,17 @@ import { add } from 'src/api/report'
 <style>
 input.input_dsec {
   display: inline-block;
+}
+.page-component-up {
+    background-color: #58b7ff;
+    position: fixed;
+    right: 100px;
+    bottom: 150px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: .4;
+    transition: .3s;
 }
 </style>

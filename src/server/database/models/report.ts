@@ -5,221 +5,225 @@ export default (mongoose, Schema) => {
     return {
         //定义mongodb的字段
         props: {
+            state: {
+                type: Schema.Types.Number,
+                required: true
+            },
             hospital_name: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             hospital_account: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             qykfcws: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzzjhbfcws: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzchszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             wzchszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             cshlgzhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             cshlgzdhlryzqywsjsrydbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             lcgwhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qybqzchszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             bqhsysjkfcwbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zzjhbfhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zzjhbfhsysjkfcwbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ccubfhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ccubfhsysjkfcwbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ssshszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ssshsysjkfssjbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             txshszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             txshsytxjbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qnlzhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qybsxlhss: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ssxlhss: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ssysxlhszqyhsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qybkxlhss: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             bkxlhszbqyhsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qydzxlhss: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             dzxlhszbqqhsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzzxlhss: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zzxlhszbqyhsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             hlglrybkysxlbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zyyxbyhzyhlzybyhss: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zzyxbyhzyhlzybyhszqyhsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzrhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             fzrhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qygzchsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzghszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzjzchsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyhszs2: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qycjzchsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             hlryxtjszyyzshjngwpxdbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             wpjxwyzs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyyzkhszgrzzrs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zkhszqyhsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zzjhzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             xyjhzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zlzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ssszkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             jzjjzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             gkzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             jlzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             tnbzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             xdgyzxzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qita: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             qita_desc: {
                 type: Schema.Types.String,
@@ -227,19 +231,19 @@ export default (mongoose, Schema) => {
             },
             hlzlgljg: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             sfjlhlzlglwyh: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             kzhlxxhjs: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             lchlxxxt: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             lchlxxxt_desc: {
                 type: Schema.Types.String,
@@ -247,27 +251,27 @@ export default (mongoose, Schema) => {
             },
             lnzkhszs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qybqzs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qysszrzzthlfwmsbqs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             zrzzthlfwbqzqybqsbl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             yywyzhlfwsfyy: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             kswyzhlfwsfbq: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             kswyzhlfwsfbq_count: {
                 type: Schema.Types.Number,
@@ -279,7 +283,7 @@ export default (mongoose, Schema) => {
             },
             kswyzhlfwsfbq2: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             kswyzhlfwsfbq2_count: {
                 type: Schema.Types.Number,
@@ -291,7 +295,7 @@ export default (mongoose, Schema) => {
             },
             sfwglbhlzkpxjd: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             sfwglbhlzkpxjd_count: {
                 type: Schema.Types.Number,
@@ -303,7 +307,7 @@ export default (mongoose, Schema) => {
             },
             sfwglbhlzkpxjd2: {
                 type: Schema.Types.String,
-                required: true
+                required: false
             },
             sfwglbhlzkpxjd2_count: {
                 type: Schema.Types.Number,
@@ -315,95 +319,95 @@ export default (mongoose, Schema) => {
             },
             qylsgjzyygljzdzkhlfabzs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             yyzdzyhlfasl: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyzyhljskzxms: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qnzyhljskzzlt: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qyhllcdjlsrs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qymnjssxsrs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             mnjsbkjyssxsrs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             mnjszyyxhzyhlzysxsrs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             mnjsjxhsrs: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             gjjzykt: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             ljjzykthdjf: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             sbjzykt: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             sbjzykthdjf: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             sj: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             sjhdjf: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qjzykt: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             qjzykthdjf: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             yjzykt: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             yjzykthdjf: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             hdkycgxm: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             hxqkfbwz: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             scisllws: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             drzbcbzz: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             drzbcbzz_desc: {
                 type: Schema.Types.String,
@@ -411,7 +415,7 @@ export default (mongoose, Schema) => {
             },
             cbzz: {
                 type: Schema.Types.Number,
-                required: true
+                required: false
             },
             cbzz_desc: {
                 type: Schema.Types.String,

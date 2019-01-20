@@ -13,7 +13,7 @@ export default ({ debug, logger }) => {
             if (!this.session.currentUser || !this.session.currentUser['account'] || !this.session.currentUser['role']) {
               return JSONResponse(2, null, '登录超时！')
             }
-            if (this.session.currentUser['role'] == 1) {
+            if (this.session.currentUser['role'] === 1) {
               return JSONResponse(0, null, '管理员不可以上传数据！')
             }
             fields.hospital_name = this.session.currentUser['name']
@@ -39,7 +39,7 @@ export default ({ debug, logger }) => {
         async getPage(params, query) {
             let newQuery = {}
             if (query && query['name']) {
-              newQuery = {hospital_name: {$regex: query['name'], $options:'i'}}
+              newQuery = {hospital_name: {$regex: query['name'], $options: 'i'}}
             }
             if (!this.session.currentUser || !this.session.currentUser['account'] || !this.session.currentUser['role']) {
                 return JSONResponse(2, null, '登录超时！')
@@ -47,13 +47,13 @@ export default ({ debug, logger }) => {
             if (this.session.currentUser['role'] === 2) {
                 newQuery = Object.assign(newQuery, {hospital_account: this.session.currentUser['account']})
             }
-            const result = await model._getPage({ condition: newQuery, ...params })
+            const result = await model._getPage({ sortBy: {state: 1, createTime: -1}, condition: newQuery, ...params })
             if (query && query['is_export'] && result['list']) {
-                let totalArr = [];
+                let totalArr = []
                 let nameMapRow = {}
                 let dataArr = []
                 let titleArr = result.list.map((x, index) => {
-                   for (var h in hospitalMap) {
+                   for (let h in hospitalMap) {
                     if (hospitalMap.hasOwnProperty(h)){
                       !nameMapRow[h]  && (nameMapRow[h] = [])
                       // nameMapRow[h].push(x[h+'_desc'] ? x[h] + '备注：(' + x[h+'_desc'] + ')' : x[h])
@@ -61,26 +61,26 @@ export default ({ debug, logger }) => {
                       if (typeof x[h] === 'undefined') {
                         nameMapRow[h].push('')
                       } else {
-                        nameMapRow[h].push(x[h] + (x[h+'_count'] && ',' + x[h+'_count'] || '') + (x[h+'_desc'] && ',' + x[h+'_desc'] || ''))
+                        nameMapRow[h].push(x[h] + (x[h + '_count'] && ',' + x[h + '_count'] || '') + (x[h + '_desc'] && ',' + x[h + '_desc'] || ''))
                       }
                     }
                    }
                    return x.hospital_name
-                });
+                })
                 titleArr.unshift('指标名称')
-                totalArr.push(titleArr);
+                totalArr.push(titleArr)
 
-                for (var h in nameMapRow) {
+                for (let h in nameMapRow) {
                   let _temparr = []
                   if (nameMapRow.hasOwnProperty(h)){
                     _temparr.push(hospitalMap[h], ...nameMapRow[h])
                   }
-                  totalArr.push(_temparr);
+                  totalArr.push(_temparr)
                 }
-                let fileName = momentHelper.format(new Date(), 'YYYYMMDDHHmmss') + '.xlsx';
-                let _buffer = xlsx.build([{ name: 'sheet1', data: totalArr }]);
-                this.res.setHeader('Content-disposition', 'attachment;filename=' + fileName);
-                this.body = _buffer;
+                let fileName = momentHelper.format(new Date(), 'YYYYMMDDHHmmss') + '.xlsx'
+                let _buffer = xlsx.build([{ name: 'sheet1', data: totalArr }])
+                this.res.setHeader('Content-disposition', 'attachment;filename=' + fileName)
+                this.body = _buffer
                 return _buffer
             }
             return JSONResponse(1, result)

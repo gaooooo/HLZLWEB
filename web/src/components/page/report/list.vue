@@ -28,11 +28,16 @@
             </el-table-column>
             <el-table-column prop="updateTimeString" label="最近一次更新时间">
             </el-table-column>
+            <el-table-column prop="state" label="上报状态">
+                <template scope="scope">
+                   <el-tag :type="!scope.row.state ? 'warning' : 'success'">{{ scope.row.state ? '已上报' : '未上报' }}</el-tag>
+                </template>
+            </el-table-column>
             <el-table-column label="操作" width="180">
                 <template scope="scope">
                     <el-button size="small"
                             @click="handleView(scope.$index, scope.row)">查看</el-button>
-                    <el-button size="small" type="danger" v-if="userpermission == '1'"
+                    <el-button size="small" type="danger" v-if="userpermission == '1' || scope.row.state === 0"
                             @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
             </el-table-column>
@@ -138,7 +143,7 @@ import { getPage, del, download } from 'src/api/report'
                   showClose: true,
                   message: '记录ID为空！',
                   type: 'error'
-                });
+                }); 
                 return
               }
               try {
