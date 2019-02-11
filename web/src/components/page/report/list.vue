@@ -37,6 +37,8 @@
                 <template scope="scope">
                     <el-button size="small"
                             @click="handleView(scope.$index, scope.row)">查看</el-button>
+                     <el-button size="small"  v-if="userpermission == '1' || scope.row.state === 0"
+                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="small" type="danger" v-if="userpermission == '1' || scope.row.state === 0"
                             @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
@@ -134,6 +136,9 @@ import { getPage, del, download } from 'src/api/report'
             handleView(index, row) {
                 this.row = row;
                 this.viewDialogVisible = true;
+            },
+            handleEdit(index, row) {
+                this.$router.push({path: '/report', query: { row }})
             },
             async handleDelete(ids, row) {
               let delconfirm = false;

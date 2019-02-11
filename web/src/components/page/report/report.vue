@@ -1136,7 +1136,14 @@ import { add } from 'src/api/report'
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }
-    }
+    },
+    mounted() {
+        const row = this.$route.query.row || {};
+        if (row.qita) {
+          row.qita = parseInt(row.qita)
+        }
+        Object.assign(this.modelInfo, row)
+    },
   }
 </script>
 <style>
