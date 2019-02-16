@@ -41,6 +41,9 @@ export default ({ debug, logger }) => {
             if (query && query['name']) {
               newQuery = {hospital_name: {$regex: query['name'], $options: 'i'}}
             }
+            if (query && query['start_date']) {
+              Object.assign(newQuery, {updateTime: {$gte: query['start_date'], $lt: query['end_date']}})
+            }
             if (!this.session.currentUser || !this.session.currentUser['account'] || !this.session.currentUser['role']) {
                 return JSONResponse(2, null, '登录超时！')
             }

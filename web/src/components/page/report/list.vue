@@ -11,6 +11,13 @@
            <el-button type="primary" icon="plus" class="handle-del mr10" @click="handleAdd">数据上报</el-button>
             <el-button type="primary" icon="delete" class="handle-del mr10" v-if="userpermission == '1'" @click="handleDelAll">批量删除</el-button>
             <el-input v-model="select_word" placeholder="请输入医院名称搜索" class="handle-input mr10" v-if="userpermission == '1'"></el-input>
+             <el-date-picker
+      v-model="dataValue"
+      type="daterange"
+      align="right"
+      placeholder="选择日期范围"
+      :picker-options="datePickerOptions">
+    </el-date-picker>
             <el-button type="primary" icon="search" @click="handleSearch" v-if="userpermission == '1'">搜索</el-button>
             <el-button style="float:right" type="primary" @click="handleExport" v-if="userpermission == '1'">导出统计表</el-button>
         </div>
@@ -69,6 +76,34 @@ import { getPage, del, download } from 'src/api/report'
     export default {
         data() {
             return {
+                datePickerOptions: {
+                  shortcuts: [{
+                    text: '最近一个月',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                        picker.$emit('pick', [start, end]);
+                    }
+                  }, {
+                    text: '最近三个月',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                        picker.$emit('pick', [start, end]);
+                    }
+                  },{
+                    text: '最近一年',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 365);
+                        picker.$emit('pick', [start, end]);
+                    }
+                  }, ]
+                },
+                dataValue: '',
                 viewDialogVisible: false,
                 tableData: [],
                 pageIndex: 1,
@@ -114,6 +149,9 @@ import { getPage, del, download } from 'src/api/report'
                 //     self.tableData = res.data.list;
                 // })
                 let queryValue = !this.select_word.trim() ? {} : {name:this.select_word}
+                if (this.dataValue) {
+                  Object.assign(queryValue, {start_date: +this.dataValue[0]}, {end_date: +this.dataValue[1]})
+                }
                 getPage(this.pageIndex, this.pageSize, queryValue).then(response => {
                   if (!response.data.status) {
                     this.$message({
