@@ -54,7 +54,7 @@
         <div class="pagination">
             <el-pagination
                     @current-change ="handleCurrentChange"
-                    layout="prev, pager, next"
+                    layout="total, prev, pager, next"
                     :total="pageTotal">
             </el-pagination>
         </div>
@@ -134,10 +134,18 @@ import { getPage, del, download } from 'src/api/report'
               this.viewDialogVisible = false;
             },
             handleExport () {
-              download(`/report/page/1000/${this.pageIndex}?is_export=1`)
+              let str = ''
+              if (this.select_word.trim()) {
+                str += `&name=${this.select_word.trim()}`
+              }
+              if (this.dataValue) {
+                str += `&start_date=${+this.dataValue[0]}&end_date=${+this.dataValue[1]}`
+              }
+              download(`/report/page/1000/1?is_export=1` + str)
             },
             handleCurrentChange(val){
                 this.pageIndex = val;
+                this.pageSize = 10;
                 this.getData();
             },
             getData(){
