@@ -12,17 +12,17 @@
         </div> -->
         <div class="form-box report">
             <el-form :model="modelInfo" ref="modelInfo" :rules="rules" label-width="420px" class="report-form">
-            
+
                 <el-form-item
                     label="1.全院开放床位数（张）"
                     prop="qykfcws"
-                    :rules="[   
+                    :rules="[
                     { required: true, message: '本字段不能为空'},
                     { type: 'number', message: '本字段必须为数字值'}
                     ]">
                 <el-input  v-model.number="modelInfo.qykfcws" auto-complete="off"></el-input>
                 </el-form-item>
-           
+
                  <el-form-item
                     label="2.全院重症监护病房床位数（张）"
                     prop="qyzzjhbfcws"
@@ -452,11 +452,11 @@
                     prop="qita_desc">
                     <el-input placeholder="请输入其他项内容" v-model="modelInfo.qita_desc" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item 
-                    label="54.护理质量管理架构" 
+                <el-form-item
+                    label="54.护理质量管理架构"
                     prop="hlzlgljg"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.hlzlgljg">
                     <el-radio label="一级"></el-radio>
@@ -465,30 +465,30 @@
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item 
-                    label="55.是否建立护理质量管理委员会" 
+                <el-form-item
+                    label="55.是否建立护理质量管理委员会"
                     prop="sfjlhlzlglwyh"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.sfjlhlzlglwyh">
                     <el-radio label="是"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
-               <el-form-item 
-                    label="56.开展护理信息化建设" 
+               <el-form-item
+                    label="56.开展护理信息化建设"
                     prop="kzhlxxhjs"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.kzhlxxhjs">
                     <el-radio label="是"></el-radio>
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item 
-                    label="57.临床护理信息系统" 
+                <el-form-item
+                    label="57.临床护理信息系统"
                     prop="lchlxxxt">
                     <el-checkbox-group v-model="modelInfo.lchlxxxt">
                         <el-checkbox label="移动护理"></el-checkbox>
@@ -505,11 +505,11 @@
                     prop="lchlxxxt_desc">
                     <el-input placeholder="请输入临床护理信息系统其他项内容" v-model="modelInfo.lchlxxxt_desc" auto-complete="off"></el-input>
                 </el-form-item>
-                <!--<el-form-item 
-                    label="57.护理管理系统" 
+                <!--<el-form-item
+                    label="57.护理管理系统"
                     prop="hlglxt"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.hlglxt">
                     <el-radio label="是"></el-radio>
@@ -539,11 +539,11 @@
                     prop="zrzzthlfwbqzqybqsbl">
                 <el-input  v-model.number="modelInfo.zrzzthlfwbqzqybqsbl" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item 
-                    label="61.医院为优质护理服务示范医院" 
+                <el-form-item
+                    label="61.医院为优质护理服务示范医院"
                     prop="yywyzhlfwsfyy"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.yywyzhlfwsfyy">
                     <el-radio label="国家级"></el-radio>
@@ -551,11 +551,11 @@
                     <el-radio label="否"></el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item 
-                    label="62.科室为优质护理服务示范病区（个）" 
+                <el-form-item
+                    label="62.科室为优质护理服务示范病区（个）"
                     prop="kswyzhlfwsfbq"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.kswyzhlfwsfbq">
                     <el-radio label="国家级"></el-radio>
@@ -574,11 +574,11 @@
                     <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model.number="modelInfo.kswyzhlfwsfbq_count" auto-complete="off"></el-input>
                       <span>内容：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq_desc" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item 
-                    label="63.科室为优质护理服务示范病区 （个）" 
+                <el-form-item
+                    label="63.科室为优质护理服务示范病区 （个）"
                     prop="kswyzhlfwsfbq2"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.kswyzhlfwsfbq2">
                     <el-radio label="市级"></el-radio>
@@ -597,11 +597,11 @@
                     <span>个数：</span><el-input placeholder="请输入示范病区个数" v-model.number="modelInfo.kswyzhlfwsfbq2_count" auto-complete="off"></el-input>
                       <span>内容：</span><el-input placeholder="请输入示范病区内容" v-model="modelInfo.kswyzhlfwsfbq2_desc" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item 
-                    label="64.是否为各类别护理专科培训基地（基地名称请在备注栏注明）" 
+                <el-form-item
+                    label="64.是否为各类别护理专科培训基地（基地名称请在备注栏注明）"
                     prop="sfwglbhlzkpxjd"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.sfwglbhlzkpxjd">
                     <el-radio label="国家级"></el-radio>
@@ -620,11 +620,11 @@
                     <span>个数：</span><el-input placeholder="请输入基地个数" v-model.number="modelInfo.sfwglbhlzkpxjd_count" auto-complete="off"></el-input>
                       <span>内容：</span><el-input placeholder="请输入基地名称" v-model="modelInfo.sfwglbhlzkpxjd_desc" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item 
-                    label="65.是否为各类别护理专科培训基地（基地名称请在备注栏注明）" 
+                <el-form-item
+                    label="65.是否为各类别护理专科培训基地（基地名称请在备注栏注明）"
                     prop="sfwglbhlzkpxjd2"
                     :rules="[
-                    { required: true, message: '本字段不能为空'} 
+                    { required: true, message: '本字段不能为空'}
                     ]">
                     <el-radio-group v-model="modelInfo.sfwglbhlzkpxjd2">
                     <el-radio label="地市级"></el-radio>
@@ -896,7 +896,7 @@
     </div>
 </template>
 <script>
-import { add } from 'src/api/report'
+import { add, update } from 'src/api/report'
   export default {
     data() {
        let checkPercent = (rule, value, callback) => {
@@ -1076,22 +1076,33 @@ import { add } from 'src/api/report'
             // 调用接口
             // 临时保存
             this.modelInfo.state = 0
-            add(this.modelInfo).then(response => {
-            if (response.data.status == 2) {
-                this.$router.push('/login');
-                this.$message(response.data.message);
-                return
+            if (this.modelInfo._id) {
+                update(this.modelInfo._id, this.modelInfo).then(response => {
+                    this.$message({
+                        message: '临时保存成功！',
+                        type: 'success'
+                    });
+                    this.$router.push('/reportlist')
+                })
+
+            } else {
+                add(this.modelInfo).then(response => {
+                    if (response.data.status == 2) {
+                        this.$router.push('/login');
+                        this.$message(response.data.message);
+                        return
+                    }
+                    if (!response.data.status) {
+                        this.$message(response.data.message);
+                        return
+                    }
+                    this.$message({
+                        message: '临时保存成功！',
+                        type: 'success'
+                    });
+                    this.$router.push('/reportlist')
+                });
             }
-            if (!response.data.status) {
-                this.$message(response.data.message);
-                return
-            }
-            this.$message({
-                message: '临时保存成功！',
-                type: 'success'
-            });
-            this.$router.push('/reportlist')
-          });
         } catch (ex) {
           this.$message('临时保存错误，' + response.data.message);
           return

@@ -18,7 +18,7 @@
       placeholder="选择日期范围"
       :picker-options="datePickerOptions">
     </el-date-picker>
-            <el-button type="primary" icon="search" @click="handleSearch" v-if="userpermission == '1'">搜索</el-button>
+            <el-button type="primary" icon="search" @click="handleSearch">搜索</el-button>
             <el-button style="float:right" type="primary" @click="handleExport" v-if="userpermission == '1'">导出统计表</el-button>
         </div>
         <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
@@ -121,7 +121,7 @@ import { getPage, del, download } from 'src/api/report'
             }
         },
         components: {
-          ViewModal 
+          ViewModal
         },
         created(){
             this.getData();
@@ -194,7 +194,7 @@ import { getPage, del, download } from 'src/api/report'
                   showClose: true,
                   message: '记录ID为空！',
                   type: 'error'
-                }); 
+                });
                 return
               }
               try {
