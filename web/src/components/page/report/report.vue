@@ -1066,8 +1066,8 @@ import { add, update } from 'src/api/report'
       };
     },
     methods: {
-      tempSave() {
-        try {
+      save (isTemp) {
+          try {
             // 特殊处理一些数据
             this.modelInfo.qita === 0 && (this.modelInfo.qita_desc = '')
             this.modelInfo.hdkycgxm === 0 && (this.modelInfo.hdkycgxm_desc = '')
@@ -1075,11 +1075,20 @@ import { add, update } from 'src/api/report'
             this.modelInfo.cbzz === 0 && (this.modelInfo.cbzz_desc = '')
             // 调用接口
             // 临时保存
-            this.modelInfo.state = 0
+            this.modelInfo.state = !isTemp ? 1 : 0
             if (this.modelInfo._id) {
                 update(this.modelInfo._id, this.modelInfo).then(response => {
+                    if (response.data.status == 2) {
+                        this.$router.push('/login');
+                        this.$message(response.data.message);
+                        return
+                    }
+                    if (!response.data.status) {
+                        this.$message(response.data.message);
+                        return
+                    }
                     this.$message({
-                        message: '临时保存成功！',
+                        message: '操作成功！',
                         type: 'success'
                     });
                     this.$router.push('/reportlist')
@@ -1097,47 +1106,26 @@ import { add, update } from 'src/api/report'
                         return
                     }
                     this.$message({
-                        message: '临时保存成功！',
+                        message: '操作成功！',
                         type: 'success'
                     });
                     this.$router.push('/reportlist')
                 });
             }
         } catch (ex) {
-          this.$message('临时保存错误，' + response.data.message);
+          this.$message('系统发生错误，' + response.data.message);
           return
         }
       },
+      tempSave() {
+        this.save(true)
+      },
       submitForm(formName) {
-        // testFetch().then(response => {
-        //   console.log(response.data)
-        // });
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            // 特殊处理一些数据
-            this.modelInfo.qita === 0 && (this.modelInfo.qita_desc = '')
-            this.modelInfo.hdkycgxm === 0 && (this.modelInfo.hdkycgxm_desc = '')
-            this.modelInfo.drzbcbzz === 0 && (this.modelInfo.drzbcbzz_desc = '')
-            this.modelInfo.cbzz === 0 && (this.modelInfo.cbzz_desc = '')
             // 调用接口
             // 立即上报
-            this.modelInfo.state = 1
-            add(this.modelInfo).then(response => {
-              if (response.data.status == 2) {
-                this.$router.push('/login');
-                this.$message(response.data.message);
-                return
-              }
-              if (!response.data.status) {
-                this.$message(response.data.message);
-                return
-              }
-              this.$message({
-                message: '上报成功！',
-                type: 'success'
-              });
-              this.$router.push('/reportlist')
-            });
+            this.save()
           } else {
             this.$message('请检查数据格式！');
             return false;
